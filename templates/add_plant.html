@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    {% for plant in plants %}
+        {{plant.latin_name}}
+        {{plant.common_name}}
+        {{plant.order}}
+        {{plant.family}}
+        {{plant.genus}}
+        {{plant.preferred_lighting}}
+        {{plant.indoor_outdoor}}
+        {{plant.water_frequency}}
+        {{plant.soil_type}}
+        {{plant.plant_photo}}
+        {{plant.additional_notes}}
+    {% endfor %}
+</body>
+</html>
