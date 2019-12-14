@@ -1,133 +1,89 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    {% for plant in plants %}
-        {{plant.latin_name}}
-        {{plant.common_name}}
-        {{plant.order}}
-        {{plant.family}}
-        {{plant.genus}}
-        {{plant.preferred_lighting}}
-        {{plant.indoor_outdoor}}
-        {{plant.water_frequency}}
-        {{plant.soil_type}}
-        {{plant.plant_photo}}
-        {{plant.additional_notes}}
-    {% endfor %}
-    
-    <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="col s12">
-          Latin Name:
-          <div class="input-field inline">
-            <input id="latin_name" type="text" class="validate">
-            <label for="latin_name">Latin Name</label>
+        <h3>Add a Plant</h3>
+        
+        <div class="row">
+          <form  action="" method="POST" class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="latin_name" name="latin_name" type="text" class="validate">
+                <label for="latin_name">Latin Name (Species)</label>
+              </div>
+            </div>
+            
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="common_name" name="common_name" type="text" class="validate">
+                <label for="common_name">Common Name</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="order" name="order" type="text" class="validate">
+                <label for="order">Order</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="family" name="family" type="text" class="validate">
+                <label for="family">Family</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="genus" name="genus" type="text" class="validate">
+                <label for="genus">Genus</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="preferred_lighting" name="preferred_lighting" type="text" class="validate">
+                <label for="preferred_lighting">Preferred Lighting</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="indoor_outdoor" name="indoor_outdoor" type="text" class="validate">
+                <label for="indoor_outdoor">Indoor/Outdoor</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="water_frequency" name="water_frequency" type="text" class="validate">
+                <label for="water_frequency">Watering Frequency</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <input id="soil_type" name="soil_type" type="text" class="validate">
+                <label for="soil_type">Reccommended Soil Type</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+                <textarea id="order" name="order" type="text" class="materialize-textarea"></textarea>
+                <label for="additional_notes">Additional Notes</label>
+            </div>
+          </div>
+          
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file">
+            </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files">
           </div>
         </div>
+          
+        </form>
       </div>
-      
-      <div class="row">
-        <div class="col s12">
-          Common Name:
-          <div class="input-field inline">
-            <input id="common_name" type="text" class="validate">
-            <label for="common_name">Common Name</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Order:
-          <div class="input-field inline">
-            <input id="order" type="text" class="validate">
-            <label for="order">Order</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Family:
-          <div class="input-field inline">
-            <input id="family" type="text" class="validate">
-            <label for="family">Family</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Genus:
-          <div class="input-field inline">
-            <input id="genus" type="text" class="validate">
-            <label for="genus">Genus</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Preferred Lighting:
-          <div class="input-field inline">
-            <input id="preferred_lighting" type="text" class="validate">
-            <label for="preferred_lighting">Preferred Lighting</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Indoor/Outdoor:
-          <div class="input-field inline">
-            <input id="indoor_outdoor" type="text" class="validate">
-            <label for="indoor_outdoor">Indoor/Outdoor</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Watering Frequency:
-          <div class="input-field inline">
-            <input id="water_frequency" type="text" class="validate">
-            <label for="water_frequency">Watering Frequency</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Soil Type:
-          <div class="input-field inline">
-            <input id="soil_type" type="text" class="validate">
-            <label for="soil_type">Soil Type</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col s12">
-         Additional Notes:
-          <div class="input-field col s12">
-            <textarea id="additional_notes" class="materialize-textarea"></textarea>
-            <label for="additional_notes">Additional Notes</label>
-          </div>
-        </div>
-      </div>
-      
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
-      
-    </form>
-  </div>
-    
 {% endblock %}
