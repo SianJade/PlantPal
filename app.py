@@ -10,11 +10,19 @@ app.config["MONGO_URI"] = 'mongodb+srv://sianjade:druidfan95@myfirstcluster-0vxh
 
 mongo = PyMongo(app)
 
-@app.route('/')
+@app.route('/view_plant')
+def view_plant():
+    return render_template('plants.html', plants=mongo.db.plants.find())
 
 @app.route('/add_plant')
 def add_plant():
-    return render_template("add_plant.html", add_plant=mongo.db.plants.find())
+    return render_template("add_plant.html", add_plant=mongo.db.add_plant.find())
+
+@app.route('/insert_plant', methods=['POST'])
+def insert_plant():
+    plants  = mongo.db.plants
+    plants.insert_one(request.form.to_dict())
+    return redirect(url_for('view_plant'))
     
     
 if __name__ == '__main__':
