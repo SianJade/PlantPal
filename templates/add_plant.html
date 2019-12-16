@@ -3,7 +3,7 @@
         <h3>Add a Plant</h3>
         
         <div class="row">
-          <form  action="" method="POST" class="col s12">
+          <form  action="{{url_for('insert_plant')}}" method="POST" class="col s12">
             <div class="row">
               <div class="input-field col s12">
                 <input id="latin_name" name="latin_name" type="text" class="validate">
@@ -46,11 +46,13 @@
             </div>
           </div>
           
-          <div class="row">
-            <div class="input-field col s12">
-                <input id="indoor_outdoor" name="indoor_outdoor" type="text" class="validate">
-                <label for="indoor_outdoor">Indoor/Outdoor</label>
-            </div>
+          <div class="input-field col s12">
+            <select id="indoor_outdoor" name="indoor_outdoor">
+              <option value="" disabled selected>Indoor/Outdoor</option>
+              <option value="1">Indoor</option>
+              <option value="2">Outdoor</option>
+              <option value="3">Either</option>
+            </select>
           </div>
           
           <div class="row">
@@ -79,10 +81,14 @@
               <span>File</span>
               <input type="file">
             </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
           </div>
-        </div>
+          
+          <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Add Plant</button>
+          </div>
           
         </form>
       </div>
