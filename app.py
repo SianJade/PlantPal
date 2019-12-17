@@ -1,4 +1,5 @@
 import os
+import env
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -6,7 +7,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'PlantPal'
-app.config["MONGO_URI"] = 'mongodb+srv://sianjade:druidfan95@myfirstcluster-0vxhc.mongodb.net/PlantPal?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
