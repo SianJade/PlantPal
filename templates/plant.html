@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>{{plant.latin_name}} - {{plant.common_name}}</h2>
+
+<ul class="collection with-header">
+    <li class="collection-header">Order: {{plant.order}}</li>
+    <li class="collection-header">Family: {{plant.family}}</li>
+    <li class="collection-header">Genus: {{plant.genus}}</li>
+    <li class="collection-header">Preferred lighting conditions: {{plant.preferred_lighting}}</li>
+    <li class="collection-header">Indoor or Outdoor: {{plant.indoor_outdoor}}</li>
+    <li class="collection-header">Watering frequency: {{plant.water_frequency}}</li>
+    <li class="collection-header">Preferred soil type: {{plant.soil_type}}</li>
+    <li class="collection-header">Additional notes: {{plant.additional_notes}}</li>
+</ul>
+            
+{% endblock %}
