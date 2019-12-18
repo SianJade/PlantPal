@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="static/css/style.css" type="text/css" />
     <title>Plant Pal</title>
 </head>
@@ -15,22 +16,26 @@
 
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Plant Pal</a>
+            <a href="#" class="brand-logo">Plant Pal<i class="fab fa-envira"></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="badges.html">Browse by Genus</a></li>
                 <li><a href="sass.html">Browse by Indoor/Outdoor</a></li>
                 <li><a href="sass.html">Browse by Preferred Lighting</a></li>
-                <li><a href="collapsible.html">Add a Plant</a></li>
-                <li><a href="collapsible.html">Login/Sign Up</a></li>
+                <li><a href="{{url_for('add_plant')}}">Add a Plant</a></li>
+                <li><a href="{{url_for('create_account')}}">Login/Sign Up</a></li>
             </ul>
         </div>
     </nav>
 
-    <h1>Plant Pal</h1>
     {% block content %} {% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 </body>
 
 </html>
