@@ -11,20 +11,35 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-@app.route('/view_plant')
-def view_plant():
+@app.route('/')
+
+@app.route('/plants')
+def view_plants():
     return render_template('plants.html', plants=mongo.db.plants.find())
 
-@app.route('/add_plant')
+@app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
-    return render_template("add_plant.html", add_plant=mongo.db.add_plant.find())
+    if request.method=='POST':
+        plants  = mongo.db.plants
+        plants.insert_one(request.form.to_dict())
+        return redirect(url_for('view_plants'))
+    return render_template("add_plant.html")
 
-@app.route('/insert_plant', methods=['POST'])
-def insert_plant():
-    plants  = mongo.db.plants
-    plants.insert_one(request.form.to_dict())
-    return redirect(url_for('view_plant'))
+@app.route('/plants/<plant_id>', methods=['GET'])
+def view_plant(plant_id):
+    plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+    return render_template('plant.html', plant=plant)
     
+@app.route('/create_account')
+def create_account():
+    return render_template("create_account.html")
+    
+    
+@app.route('/insert_user', methods=['POST'])
+def insert_user():
+    users  = mongo.db.users
+    users.insert_one(request.form.to_dict())
+    return redirect(url_for('view_plant'))
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
