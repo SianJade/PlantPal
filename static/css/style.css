@@ -6,3 +6,27 @@ nav .nav-wrapper{
     background-image: url('/static/assets/landing.png');
     background-size: 100vw 100vh;
 }
+
+.landing-header{
+    display: block;
+    position: absolute;
+    text-align: center;
+    right: 16.5%;
+    top: 15%;
+}
+
+.landing-subhead{
+    display: block;
+    position: absolute;
+    right: 12.5%;
+    text-align: center;
+    top: 32.5%;
+}
+
+.input-field{
+    width: 30%;
+    display: block;
+    position: absolute;
+    right: 10%;
+    top: 55%;
+}
