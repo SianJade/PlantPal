@@ -1,17 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-        <ul class="collection with-header">
-            {% for plant in plants %}
-        <li class="collection-header">{{plants.latin_name}}</li>
-        <li class="collection-item">{{plants.common_name}}</li>
-        <li class="collection-item">{{plants.order}}</li>
-        <li class="collection-item">{{plants.family}}</li>
-        <li class="collection-item">{{plants.genus}}</li>
-        <li class="collection-item">{{plants.preferred_lighting}}</li>
-        <li class="collection-item">{{plants.indoor_outdoor}}</li>   
-        <li class="collection-item">{{plants.water_frequency}}</li>
-        <li class="collection-item">{{plants.soil_type}}</li>
-        <li class="collection-item">{{plants.additional_notes}}</li>
-        {% endfor %}
-      </ul>
+
+<h2>All Plants</h2>
+
+<ul class="collection with-header">
+    {% for plant in plants %}
+    <li class="collection-header">{{plant.latin_name}} - {{plant.common_name}}
+        <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="waves-effect waves-light btn btn-small">
+            View plant
+        </a>
+    </li>
+    {% endfor %}
+</ul>
             
 {% endblock %}
