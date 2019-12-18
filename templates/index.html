@@ -1,5 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 
-<body class="landing-page"></body>
+<body class="landing-page">
+    <div class="container">
+        <div class="headings">
+            <h1 class="landing-header">Plant Pal</h1>
+            <h3 class="landing-subhead">Your one-stop<br>plant encyclopedia</h3>
+        </div>
+        <form>
+            <div class="input-field">
+              <input id="search" type="search" class="search-bar">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            </div>
+        </form>
+    </div>
+</body>
 
 {% endblock %}
