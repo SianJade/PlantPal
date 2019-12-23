@@ -1,6 +1,7 @@
 import os
 import env
-from flask import Flask, render_template, redirect, request, url_for
+import datetime
+from flask import Flask, render_template, redirect, request, url_for, session, escape
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -8,6 +9,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'PlantPal'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.secret_key = os.getenv("SECRET")
 
 mongo = PyMongo(app)
 
@@ -23,7 +25,10 @@ def view_plants():
 def add_plant():
     if request.method=='POST':
         plants  = mongo.db.plants
-        plants.insert_one(request.form.to_dict())
+        form = request.form.to_dict()
+        form.created_at = datetime.datetime.now()
+        # form.created_by = [session['username']]
+        plants.insert_one(form)
         return redirect(url_for('view_plants'))
     return render_template("add_plant.html")
 
@@ -32,17 +37,24 @@ def view_plant(plant_id):
     plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
     return render_template('plant.html', plant=plant)
 
-@app.route('/user')
-def view_profile():
-    return render_template('user.html', users=mongo.db.users.find())
+@app.route('/plant/edit/<plant_id>', methods=['GET', 'POST'])
+def edit_plant(plant_id):
+    plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+    if request.method=='POST':
+        form = request.form.to_dict()
+        form.created_at = plant.created_at
+        form.updated_at = datetime.datetime.now()
+        # form.created_by = input_created_by(plant.created_by, session['username'])
+    return render_template('edit_plant.html', plant=plant)
 
 @app.route('/user/new', methods=['GET', 'POST'])
 def create_account():
     if request.method=='POST':
         users  = mongo.db.users
         users.insert_one(request.form.to_dict())
-        return redirect(url_for('view_profile'))
+        return redirect(url_for('view_user'))
     return render_template("create_account.html")
+
 
 @app.route('/user/<user_id>', methods=['GET'])
 def view_user(user_id):
