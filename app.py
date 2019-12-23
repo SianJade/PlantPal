@@ -18,17 +18,18 @@ app.config["SECRET_KEY"] = os.getenv("SECRET")
 mongo = PyMongo(app)
 
 """ App routes """
-
 @app.route('/')
 
 @app.route('/index')
 def home():
     return render_template('index.html')
 
+""" View all plants """
 @app.route('/plants')
 def view_plants():
     return render_template('plants.html', plants=mongo.db.plants.find())
 
+""" Add a plant """
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
     if request.method=='POST':
@@ -40,11 +41,13 @@ def add_plant():
         return redirect(url_for('view_plants'))
     return render_template("add_plant.html")
 
+""" View a plant """
 @app.route('/plants/<plant_id>', methods=['GET'])
 def view_plant(plant_id):
     plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
     return render_template('plant.html', plant=plant)
 
+""" Edit a plant """
 @app.route('/plant/edit/<plant_id>', methods=['GET', 'POST'])
 def edit_plant(plant_id):
     plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
@@ -55,13 +58,15 @@ def edit_plant(plant_id):
         # form.created_by = input_created_by(plant.created_by, session['username'])
     return render_template('edit_plant.html', plant=plant)
 
-@app.route('/user/new', methods=['GET', 'POST'])
+@app.route('/user/new', methods=['GET'])
 def create_account():
     if request.method=='POST':
         users  = mongo.db.users
         users.insert_one(request.form.to_dict())
-        return redirect(url_for('view_user', "user_id"=user._id))
-    return render_template("create_account.html")
+        session['user'] = users['username']
+        return redirect(url_for('view_user', user=users['username']))
+    else:
+        return render_template("create_account.html")
 
 
 @app.route('/user/<user_id>', methods=['GET'])
