@@ -1,7 +1,7 @@
 import os
 import env
 import datetime
-from flask import Flask, render_template, redirect, request, url_for, session, escape
+from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -14,6 +14,8 @@ app.config["SECRET_KEY"] = os.getenv("SECRET")
 mongo = PyMongo(app)
 
 @app.route('/')
+
+@app.route('/index')
 def home():
     return render_template('index.html')
 
