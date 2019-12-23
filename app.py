@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'PlantPal'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-app.secret_key = os.getenv("SECRET")
+app.config["SECRET_KEY"] = os.getenv("SECRET")
 
 mongo = PyMongo(app)
 
@@ -52,7 +52,7 @@ def create_account():
     if request.method=='POST':
         users  = mongo.db.users
         users.insert_one(request.form.to_dict())
-        return redirect(url_for('view_user'))
+        return redirect(url_for('view_user', "user_id"=user._id))
     return render_template("create_account.html")
 
 
