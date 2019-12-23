@@ -5,13 +5,19 @@ from flask import Flask, render_template, redirect, request, url_for, session, e
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+""" App config """
+
 app = Flask(__name__)
+
+""" MongoDB config """
 
 app.config["MONGO_DBNAME"] = 'PlantPal'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["SECRET_KEY"] = os.getenv("SECRET")
 
 mongo = PyMongo(app)
+
+""" App routes """
 
 @app.route('/')
 
@@ -62,6 +68,12 @@ def create_account():
 def view_user(user_id):
     user=mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template('user.html', user=user)
+    
+"""Log out of account"""
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
