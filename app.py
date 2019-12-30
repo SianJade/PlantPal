@@ -4,6 +4,7 @@ import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 
 """ App config """
 
@@ -58,15 +59,10 @@ def edit_plant(plant_id):
         # form.created_by = input_created_by(plant.created_by, session['username'])
     return render_template('edit_plant.html', plant=plant)
 
-@app.route('/user/new', methods=['GET'])
+""" Create an account """
+@app.route('/user/new', methods=['GET', 'POST'])
 def create_account():
-    if request.method=='POST':
-        users  = mongo.db.users
-        users.insert_one(request.form.to_dict())
-        session['user'] = users['username']
-        return redirect(url_for('view_user', user=users['username']))
-    else:
-        return render_template("create_account.html")
+    
 
 
 @app.route('/user/<user_id>', methods=['GET'])
