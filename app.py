@@ -62,7 +62,17 @@ def edit_plant(plant_id):
 """ Create an account """
 @app.route('/user/new', methods=['GET', 'POST'])
 def create_account():
-    
+    if request.method=='POST':
+        form = request.form.to_dict()
+        user_password = generate_password_hash(form['hashed_pwd'])
+        mongo.db.add_user.insert_one({
+            'first': form['first_name'],
+            'last': form['last_name'],
+            'email': form['email'],
+            'username': form['username'],
+            'password': user_password
+        })
+    return render_template('create_account.html')
 
 
 @app.route('/user/<user_id>', methods=['GET'])
