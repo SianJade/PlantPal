@@ -18,6 +18,10 @@ app.config["SECRET_KEY"] = os.getenv("SECRET")
 
 mongo = PyMongo(app)
 
+""" Collections """
+users_collection = mongo.db.users
+add_user_collection = mongo.db.add_user
+
 """ App routes """
 @app.route('/')
 
@@ -64,8 +68,8 @@ def edit_plant(plant_id):
 def create_account():
     if request.method=='POST':
         form = request.form.to_dict()
-        user_password = generate_password_hash(form['hashed_pwd'])
-        mongo.db.add_user.insert_one({
+        user_password = generate_password_hash(form['password'])
+        mongo.db.users.insert_one({
             'first': form['first_name'],
             'last': form['last_name'],
             'email': form['email'],
