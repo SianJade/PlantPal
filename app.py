@@ -95,14 +95,14 @@ def create_account():
         form = request.form.to_dict()
         user_password = generate_password_hash(form['password'])
         user_id = mongo.db.users.insert_one({
-            'first': form['first_name'],
-            'last': form['last_name'],
+            'first_name': form['first_name'],
+            'last_name': form['last_name'],
             'email': form['email'],
             'username': form['username'],
             'password': user_password
         })
         user = mongo.db.users.find_one({"_id" : ObjectId(user_id.inserted_id)})
-        return render_template('user.html', user=user_id)
+        return render_template('user.html', user=user)
     return render_template('create_account.html')
 
 @app.route('/login', methods=['GET', 'POST'])
