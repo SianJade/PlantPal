@@ -12,5 +12,8 @@
     <li class="collection-header">Preferred soil type: {{plant.soil_type}}</li>
     <li class="collection-header">Additional notes: {{plant.additional_notes}}</li>
 </ul>
-            
+
+<div class="row">
+    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="waves-effect waves-light btn btn-small blue">Edit Plant</a>
+</div>
 {% endblock %}
