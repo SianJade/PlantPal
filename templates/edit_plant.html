@@ -3,7 +3,7 @@
         <h3>Edit Plant Details</h3>
         
         <div class="row">
-          <form  action="{{url_for('edit_plant')}}" method="POST" class="col s12">
+          <form  action="{{url_for('edit_plant', plant_id=plant._id)}}" method="POST" class="col s12">
             <div class="row">
               <div class="input-field col s12 add-plant-input">
                 <input id="latin_name" name="latin_name" type="text" class="validate" value="{{plant.latin_name}}">
