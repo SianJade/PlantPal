@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+
+<h5>My Account </h5>
+<ul class="collection with-header">
+    <li class="collection-header">First Name: {{user.first_name}}</li>
+    <li class="collection-header">Last Name: {{user.last_name}}</li>
+    <li class="collection-header">Email: {{user.email}}</li>
+    <li class="collection-header">Username: {{user.username}}</li>
+</ul>
+            
+{% endblock %}
