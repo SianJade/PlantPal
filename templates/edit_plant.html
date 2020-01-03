@@ -1,95 +1,94 @@
-{% extends 'base.html' %}
-{% block content %}
-        <h3>Edit Plant Details</h3>
-        
-        <div class="row">
-          <form  action="{{url_for('edit_plant', plant_id=plant._id)}}" method="POST" class="col s12">
-            <div class="row">
-              <div class="input-field col s12 add-plant-input">
-                <input id="latin_name" name="latin_name" type="text" class="validate" value="{{plant.latin_name}}">
-                <label for="latin_name">Latin Name (Species)</label>
-              </div>
-            </div>
-            
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="common_name" name="common_name" type="text" class="validate" value="{{plant.common_name}}">
-                <label for="common_name">Common Name</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="order" name="order" type="text" class="validate" value="{{plant.order}}">
-                <label for="order">Order</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="family" name="family" type="text" class="validate" value="{{plant.family}}">
-                <label for="family">Family</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="genus" name="genus" type="text" class="validate"  value="{{plant.genus}}">
-                <label for="genus">Genus</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="preferred_lighting" name="preferred_lighting" type="text" class="validate"  value="{{plant.preferred_lighting}}">
-                <label for="preferred_lighting">Preferred Lighting</label>
-            </div>
-          </div>
-          
-          <div class="input-field col s12 add-plant-input">
-            <select id="indoor_outdoor" name="indoor_outdoor">
+{% extends 'base.html' %} {% block content %}
+<h3>Edit Plant Details</h3>
+
+<div class="row">
+  <form action="{{url_for('edit_plant', plant_id=plant._id)}}" method="POST" class="col s12">
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="latin_name" name="latin_name" type="text" class="validate" value="{{plant.latin_name}}">
+        <label for="latin_name">Latin Name (Species)</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="common_name" name="common_name" type="text" class="validate" value="{{plant.common_name}}">
+        <label for="common_name">Common Name</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="order" name="order" type="text" class="validate" value="{{plant.order}}">
+        <label for="order">Order</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="family" name="family" type="text" class="validate" value="{{plant.family}}">
+        <label for="family">Family</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="genus" name="genus" type="text" class="validate" value="{{plant.genus}}">
+        <label for="genus">Genus</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="preferred_lighting" name="preferred_lighting" type="text" class="validate" value="{{plant.preferred_lighting}}">
+        <label for="preferred_lighting">Preferred Lighting</label>
+      </div>
+    </div>
+
+    <div class="input-field col s12 add-plant-input">
+      <select id="indoor_outdoor" name="indoor_outdoor">
               <option value="{{plant.preferred_lighting}}" disabled selected>Indoor/Outdoor</option>
               <option value="1">Indoor</option>
               <option value="2">Outdoor</option>
               <option value="3">Either</option>
             </select>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="water_frequency" name="water_frequency" type="text" class="validate" value="{{plant.water_frequency}}">
-                <label for="water_frequency">Watering Frequency</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <input id="soil_type" name="soil_type" type="text" class="validate" value="{{plant.soil_type}}">
-                <label for="soil_type">Reccommended Soil Type</label>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="input-field col s12 add-plant-input">
-                <textarea id="additional_notes" name="additional_notes" type="text" class="materialize-textarea" value="{{plant.additional_notes}}"></textarea>
-                <label for="additional_notes">Additional Notes</label>
-            </div>
-          </div>
-          
-          <div class="file-field input-field add-plant-input">
-            <div class="btn">
-              <span>File</span>
-              <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Add a plant image">
-            </div>
-          </div>
-          
-          <div class="row">
-            <button class="btn waves-effect waves-light" type="submit">Update Plant</button>
-          </div>
-          
-        </form>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="water_frequency" name="water_frequency" type="text" class="validate" value="{{plant.water_frequency}}">
+        <label for="water_frequency">Watering Frequency</label>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <input id="soil_type" name="soil_type" type="text" class="validate" value="{{plant.soil_type}}">
+        <label for="soil_type">Reccommended Soil Type</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 add-plant-input">
+        <textarea id="additional_notes" name="additional_notes" type="text" class="materialize-textarea" value="{{plant.additional_notes}}"></textarea>
+        <label for="additional_notes">Additional Notes</label>
+      </div>
+    </div>
+
+    <div class="file-field input-field add-plant-input">
+      <div class="btn">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Add a plant image">
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn waves-effect waves-light" type="submit">Update Plant</button>
+    </div>
+
+  </form>
+</div>
 {% endblock %}
