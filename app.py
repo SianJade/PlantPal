@@ -65,11 +65,11 @@ def view_plant(plant_id):
 @app.route('/plant/edit/<plant_id>')
 def edit_plant(plant_id):
     plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
-   # if request.method=='POST':
-       # form = request.form.to_dict()
-       # form.created_at = plant.created_at
-       # form.updated_at = datetime.datetime.now()
-        # form.created_by = input_created_by(plant.created_by, session['username'])
+    # if request.method=='POST':
+    # form = request.form.to_dict()
+    # form.created_at = plant.created_at
+    # form.updated_at = datetime.datetime.now()
+    # form.created_by = input_created_by(plant.created_by, session['username'])
     return render_template('edit_plant.html', plant=plant)
 
 
@@ -125,21 +125,21 @@ def create_account():
 
 @app.route('/login', methods=['GET'])
 def login():
-	if 'username' in session:
-		user_in_database = mongo.db.users.find_one({'username': session['username']})
+    if 'username' in session:
+        user_in_database = mongo.db.users.find_one({'username': session['username']})
 		if user_in_database:
-			flash('Logged in as %s' % escape(session['username']))
-			return redirect(url_for('profile', user=user_in_database['username']))
+		    flash('Logged in as %s' % escape(session['username']))
+		    return redirect(url_for('profile', user=user_in_database['username']))
 	else:
-		return render_template("login.html")
+	    return render_template("login.html")
 
 
 @app.route('/authentication', methods=['POST'])
 def authentication():
     form = request.form.to_dict()
-	user_in_db = mongo.db.users.find_one({'username': form['username']})
-	if user_in_db:
-		if check_password_hash(user_in_db['password'], form['password']):
+    user_in_db = mongo.db.users.find_one({'username': form['username']})
+    if user_in_db:
+        if check_password_hash(user_in_db['password'], form['password']):
 			session['user'] = form['username']
 			flash("Login successful")
 			return redirect(url_for('profile', user=user_in_db['username']))
