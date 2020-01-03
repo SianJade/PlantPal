@@ -128,11 +128,29 @@ def login():
     if 'username' in session:
         flash('Logged in as %s' % escape(session['username']))
         return redirect(url_for('home'))
-    elif request.method == 'POST':
+    else:
+        request.method == 'POST':
         session['username'] = request.form['username']
         return redirect(url_for('login'))
     return render_template('login.html')
-    
+
+
+@app.route('/authentication', methods=['POST'])
+def authentication():
+    form = request.form.to_dict()
+	user_in_db = users_collection.find_one({'username': form['username']})
+	if user_in_db:
+		if check_password_hash(user_in_db['password'], form['password']):
+			session['user'] = form['username']
+			else:
+				flash("Login successful")
+				return redirect(url_for('profile', user=user_in_db['username']))
+		else:
+			flash("Wrong username or password")
+			return redirect(url_for('login'))
+	else:
+		flash("An account does not exist for this username")
+        return redirect(url_for('create_account'))
 
 @app.route('/user/<user_id>', methods=['GET'])
 def profile(user_id):
