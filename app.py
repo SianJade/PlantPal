@@ -127,11 +127,11 @@ def create_account():
 def login():
     if 'username' in session:
         user_in_database = mongo.db.users.find_one({'username': session['username']})
-		if user_in_database:
-		    flash('Logged in as %s' % escape(session['username']))
-		    return redirect(url_for('profile', user=user_in_database['username']))
-	else:
-	    return render_template("login.html")
+        if user_in_database:
+            flash('Logged in as %s' % escape(session['username']))
+            return redirect(url_for('profile', user=user_in_database['username']))
+    else:
+        return render_template("login.html")
 
 
 @app.route('/authentication', methods=['POST'])
@@ -140,14 +140,14 @@ def authentication():
     user_in_db = mongo.db.users.find_one({'username': form['username']})
     if user_in_db:
         if check_password_hash(user_in_db['password'], form['password']):
-			session['user'] = form['username']
-			flash("Login successful")
-			return redirect(url_for('profile', user=user_in_db['username']))
-		else:
-			flash("Wrong username or password")
-			return redirect(url_for('login'))
-	else:
-		flash("An account does not exist for this username")
+            session['user'] = form['username']
+            flash("Login successful")
+            return redirect(url_for('profile', user=user_in_db['username']))
+        else:
+            flash("Wrong username or password")
+            return redirect(url_for('login'))
+    else:
+        flash("An account does not exist for this username")
         return redirect(url_for('create_account'))
 
 @app.route('/user/<user_id>', methods=['GET'])
