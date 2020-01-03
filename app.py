@@ -91,12 +91,13 @@ def update_plant(plant_id):
     })
     return redirect(url_for('view_plant'))
 
-""" Delete a plant """
 
+""" Delete a plant """
 @app.route('/delete_plant/<plant_id>')
 def delete_plant(plant_id):
     mongo.db.plants.remove({'_id': ObjectId(plant_id)})
     return redirect(url_for('view_plants'))
+
 
 """ Browse by plant genus """
 @app.route('/genus/<genus_name>')
