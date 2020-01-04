@@ -103,6 +103,14 @@ def delete_plant(plant_id):
 @app.route('/genus/<genus_name>')
 def genus(genus_name):
     return render_template('genus.html', plants=mongo.db.plants.find({"genus": genus_name}))
+    
+
+""" Search for a plant """
+@app.route('/get_search', methods=['GET', 'POST'])
+def get_search():
+    query = request.args.get('q')
+    results = mongo.db.plants.find({'$text':{'$search': query}})
+    return render_template('search_results.html', results=results, query=query)
 
 
 """ Create an account """
@@ -116,14 +124,15 @@ def create_account():
             'last_name': form['last_name'],
             'email': form['email'],
             'username': form['username'],
-            'password': user_password
+            'password': user_password,
+            're-enter_password': user_password
         })
         user = mongo.db.users.find_one({"_id" : ObjectId(user_id.inserted_id)})
         return render_template('user.html', user=user)
     return render_template('create_account.html')
 
-
-@app.route('/login', methods=['GET'])
+""" Login and Authentication """
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'username' in session:
         user_in_database = mongo.db.users.find_one({'username': session['username']})
@@ -140,7 +149,7 @@ def authentication():
     user_in_db = mongo.db.users.find_one({'username': form['username']})
     if user_in_db:
         if check_password_hash(user_in_db['password'], form['password']):
-            session['user'] = form['username']
+            session['username'] = form['username']
             flash("Login successful")
             return redirect(url_for('profile', user=user_in_db['username']))
         else:
