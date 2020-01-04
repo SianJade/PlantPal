@@ -109,6 +109,7 @@ def genus(genus_name):
 @app.route('/get_search', methods=['GET', 'POST'])
 def get_search():
     query = request.args.get('q')
+    mongo.db.plants.createIndex( { latin_name: "text", common_name: "text", family: "text", order: "text" } )
     results = mongo.db.plants.find({'$text':{'$search': query}})
     return render_template('search_results.html', results=results, query=query)
 
