@@ -106,10 +106,9 @@ def genus(genus_name):
     
 
 """ Search for a plant """
-@app.route('/get_search', methods=['GET', 'POST'])
+@app.route('/get_search', methods=['POST'])
 def get_search():
-    query = request.args.get('q')
-    mongo.db.plants.createIndex( { latin_name: "text", common_name: "text", family: "text", order: "text" } )
+    query = request.form['search_text']
     results = mongo.db.plants.find({'$text':{'$search': query}})
     return render_template('search_results.html', results=results, query=query)
 
