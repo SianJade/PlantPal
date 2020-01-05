@@ -2,13 +2,15 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="headings">
-        <h1 class="landing-header">Plant Pal</h1>
-        <h3 class="landing-subhead">Your one-stop<br>plant encyclopedia</h3>
+        <h1 class="landing-header display-1 col-xl-6 col-lg-6 col-md-4 offset-xl-8 offset-lg-8 offset-md-7">Plant Pal</h1><br>
+        <h3 class="landing-subhead col-xl-6 col-lg-6 col-md-4 offset-xl-8 offset-lg-8 offset-md-7">Your one-stop<br>plant encyclopedia</h3><br>
     </div>
     <div class="home-search">
         <form action="{{ url_for('get_search') }}" method="post">
-            <input class="form-control" id="q" name="search_text" type="search" placeholder="Search all plants"><br>
-            <button type="submit" class="btn btn-success">Search</button>
+            <input class="form-control col-xl-3 col-lg-3 col-md-4 offset-xl-8 offset-lg-8 offset-md-7" 
+            id="q" name="search_text" type="search" placeholder="Search all plants">
+            <br>
+            <button type="submit" class="btn btn-success offset-xl-9 offset-lg-9 offset-md-8">Search</button>
         </form>
     </div>
 </div>
