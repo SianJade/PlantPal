@@ -5,42 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Plant Pal</title>
 </head>
 
-<body class="base-background">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg">
-            <div class="collapse navbar-collapse">
-                <a href="{{url_for('home')}}" class="navbar-brand"><i class="fab fa-envira"></i>Plant Pal</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('genera')}}">Browse by Genus</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('view_plants')}}">View all Plants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('add_plant')}}">Add a Plant</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('create_account')}}">Login/Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        {% block content %} {% endblock %}
-    </div>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="collapse navbar-collapse">
+            <a href="{{url_for('home')}}" class="navbar-brand"><i class="fab fa-envira"></i>Plant Pal</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('genera')}}">Browse by Genus</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('view_plants')}}">View all Plants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('add_plant')}}">Add a Plant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('create_account')}}">Login/Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% block content %} {% endblock %}
 </body>
 
 </html>
