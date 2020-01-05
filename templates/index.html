@@ -1,18 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 
-<body class="landing-page">
-    <div class="container">
-        <div class="headings">
-            <h1 class="landing-header">Plant Pal</h1>
-            <h3 class="landing-subhead">Your one-stop<br>plant encyclopedia</h3>
-        </div>
-        <div class="input-field home-search">
-            <form action="{{ url_for('get_search') }}" method="post">
-                <input name="search_text" id="q" type="text" placeholder="Search all plants">
-                <button type="submit">Search</button>
-            </form>
-        </div>
+<div class="container landing-page">
+    <div class="headings">
+        <h1 class="landing-header">Plant Pal</h1>
+        <h3 class="landing-subhead">Your one-stop<br>plant encyclopedia</h3>
     </div>
-</body>
+    <div class="home-search">
+        <form action="{{ url_for('get_search') }}" method="post">
+            <input class="form-control" id="q" name="search_text" type="search" placeholder="Search all plants"><br>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

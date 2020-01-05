@@ -2,9 +2,9 @@
 
 <h2>All Genera</h2>
 
-<ul class="collection with-header">
+<ul class="list-group">
     {% for plant in plants %}
-    <li class="collection-header">{{plant.genus}}
+    <li class="list-group-item">{{plant.genus}}
         <a href="{{url_for('genus', genus_name=plant.genus)}}" class="waves-effect waves-light btn btn-small">
             View Plants
         </a>
