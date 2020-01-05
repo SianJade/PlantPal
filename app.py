@@ -47,7 +47,7 @@ def add_plant():
     if request.method=='POST':
         plants  = mongo.db.plants
         form = request.form.to_dict()
-        form.created_at = datetime.datetime.now()
+        #form.created_at = datetime.datetime.now()
         #form.created_by = [session['username']]
         plants.insert_one(form)
         return redirect(url_for('view_plants'))
@@ -135,6 +135,8 @@ def create_account():
         return render_template('user.html', user=user)
     return render_template('create_account.html')
 
+
+
 """ Login and Authentication """
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -142,7 +144,7 @@ def login():
         user_in_database = mongo.db.users.find_one({'username': session['username']})
         if user_in_database:
             flash('Logged in as %s' % escape(session['username']))
-            return redirect(url_for('profile', user=user_in_database['username']))
+            return redirect(url_for('profile', user_id=user_in_database['username']))
     else:
         return render_template("login.html")
 
@@ -155,7 +157,7 @@ def authentication():
         if check_password_hash(user_in_db['password'], form['password']):
             session['username'] = form['username']
             flash("Login successful")
-            return redirect(url_for('profile', user=user_in_db['username']))
+            return redirect(url_for('profile', user_id=user_in_db['_id']))
         else:
             flash("Wrong username or password")
             return redirect(url_for('login'))
@@ -165,10 +167,11 @@ def authentication():
 
 @app.route('/user/<user_id>', methods=['GET'])
 def profile(user_id):
-    user = mongo.db.users.find_one({"_id" : ObjectId(user_id.inserted_id)})
-    return render_template('user.html', user=user)
-    
-    
+    return render_template('user.html', user=mongo.db.users.find_one({"_id": ObjectId(user_id)}), user_id=user_id)
+
+
+
+
 """Log out of account"""
 @app.route('/logout')
 def logout():
