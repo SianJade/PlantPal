@@ -1,51 +1,54 @@
 {% extends 'base.html' %} {% block content %}
-<h3>Create Account</h3>
 
-<div class="row">
-  <h6>Already have an account? <a href={{url_for( 'login')}}>Login</a></h6>
-</div>
+<div class="container-fluid">
+  <h3>Create Account</h3>
 
-<div class="row">
-  <form action="{{url_for('create_account')}}" method="POST" class="col s12">
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="first_name" name="first_name" type="text" class="validate">
-        <label for="first_name">First Name</label>
+  <div class="row">
+    <h6>Already have an account? <a href="{{url_for('login')}}">Login</a></h6>
+  </div>
+
+  <div class="row">
+    <form action="{{url_for('create_account')}}" method="POST">
+      <div class="row">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input id="first_name" name="first_name" type="text" class="form-control">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="last_name" name="last_name" type="text" class="validate">
-        <label for="last_name">Last Name</label>
+      <div class="row">
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" name="last_name" type="text" class="form-control">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="email" name="email" type="email" class="validate">
-        <label for="email">Email</label>
+      <div class="row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" class="form-control">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="username" name="username" type="text" class="validate">
-        <label for="username">Username</label>
+      <div class="row">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" class="form-control">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="hashed_pwd" name="password" type="text" class="validate">
-        <label for="hashed_pwd">Password</label>
+      <div class="row">
+        <div class="form-group">
+          <label for="hashed_pwd">Password</label>
+          <input id="hashed_pwd" name="password" type="password" class="form-control">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <button class="btn waves-effect waves-light" type="submit">Create Account</button>
-    </div>
+      <div class="row">
+        <button class="btn btn-success" type="submit">Create Account</button>
+      </div>
 
-  </form>
+    </form>
+  </div>
 </div>
 {% endblock %}
