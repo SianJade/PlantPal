@@ -6,14 +6,12 @@
             <h1 class="landing-header">Plant Pal</h1>
             <h3 class="landing-subhead">Your one-stop<br>plant encyclopedia</h3>
         </div>
-        <form>
-            <div class="input-field home-search">
-                <form action="{{ url_for('get_search') }}">
-                    <input type="text" id="q" name="q" placeholder="Search">
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-        </form>
+        <div class="input-field home-search">
+            <form action="{{ url_for('get_search') }}" method="post">
+                <input name="search_text" id="q" type="text" placeholder="Search all plants">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
 </body>
 
