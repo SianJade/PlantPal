@@ -1,92 +1,87 @@
 {% extends 'base.html' %} {% block content %}
 <h3>Edit Plant Details</h3>
 
-<div class="row">
-  <form action="{{url_for('edit_plant', plant_id=plant._id)}}" method="POST" class="col s12">
+<div class="container-fluid">
+  <form action="{{url_for('edit_plant', plant_id=plant._id)}}" method="POST">
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="latin_name" name="latin_name" type="text" class="validate" value="{{plant.latin_name}}">
+      <div class="form-group add-plant-input">
         <label for="latin_name">Latin Name (Species)</label>
+        <input id="latin_name" name="latin_name" type="text" class="form-control" value="{{plant.latin_name}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="common_name" name="common_name" type="text" class="validate" value="{{plant.common_name}}">
+      <div class="form-group add-plant-input">
         <label for="common_name">Common Name</label>
+        <input id="common_name" name="common_name" type="text" class="form-control" value="{{plant.common_name}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="order" name="order" type="text" class="validate" value="{{plant.order}}">
+      <div class="form-group add-plant-input">
         <label for="order">Order</label>
+        <input id="order" name="order" type="text" class="form-control"value="{{plant.order}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="family" name="family" type="text" class="validate" value="{{plant.family}}">
+      <div class="form-group add-plant-input">
         <label for="family">Family</label>
+        <input id="family" name="family" type="text" class="form-control" value="{{plant.family}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="genus" name="genus" type="text" class="validate" value="{{plant.genus}}">
+      <div class="form-group add-plant-input">
         <label for="genus">Genus</label>
+        <input id="genus" name="genus" type="text" class="form-control" value="{{plant.genus}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="preferred_lighting" name="preferred_lighting" type="text" class="validate" value="{{plant.preferred_lighting}}">
+      <div class="form-group add-plant-input">
         <label for="preferred_lighting">Preferred Lighting</label>
+        <input id="preferred_lighting" name="preferred_lighting" type="text" class="form-control" value="{{plant.preferred_lighting}}">
       </div>
     </div>
 
-    <div class="input-field col s12 add-plant-input">
-      <select id="indoor_outdoor" name="indoor_outdoor">
-              <option value="{{plant.preferred_lighting}}" disabled selected>Indoor/Outdoor</option>
-              <option value="1">Indoor</option>
-              <option value="2">Outdoor</option>
-              <option value="3">Either</option>
-            </select>
+    <div class="row">
+      <div class="form-group add-plant-input">
+        <label for="indoor_outdoor">Indoor/Outdoor</label>
+        <input id="indoor_outdoor" name="indoor_outdoor" type="text" class="form-control" value="{{plant.indoor_outdoor}}">
+      </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="water_frequency" name="water_frequency" type="text" class="validate" value="{{plant.water_frequency}}">
+      <div class="form-group add-plant-input">
         <label for="water_frequency">Watering Frequency</label>
+        <input id="water_frequency" name="water_frequency" type="text" class="form-control" value="{{plant.water_frequency}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <input id="soil_type" name="soil_type" type="text" class="validate" value="{{plant.soil_type}}">
+      <div class="form-group add-plant-input">
         <label for="soil_type">Reccommended Soil Type</label>
+        <input id="soil_type" name="soil_type" type="text" class="form-control" value="{{plant.soil_type}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s12 add-plant-input">
-        <textarea id="additional_notes" name="additional_notes" type="text" class="materialize-textarea" value="{{plant.additional_notes}}"></textarea>
+      <div class="form-group add-plant-input">
         <label for="additional_notes">Additional Notes</label>
-      </div>
-    </div>
-
-    <div class="file-field input-field add-plant-input">
-      <div class="btn">
-        <span>File</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Add a plant image">
+        <textarea id="additional_notes" name="additional_notes" type="text" class="form-control" value="{{plant.additional_notes}}"></textarea>
       </div>
     </div>
 
     <div class="row">
-      <button class="btn waves-effect waves-light" type="submit">Update Plant</button>
+      <div class="form-group">
+        <label for="plant-image">Upload plant photo</label>
+        <input type="file" class="form-control-file" id="plant-image" placeholder="Add plant image">
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-success" type="submit">Update Plant</button>
     </div>
 
   </form>
