@@ -90,7 +90,7 @@ def update_plant(plant_id):
         'additional_notes': request.form.get('additional_notes'),
         'updated_at': datetime.datetime.now()
     })
-    return redirect(url_for('view_plant'))
+    return redirect(url_for('view_plant', plant_id=plant_id))
 
 
 """ Delete a plant """
