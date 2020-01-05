@@ -1,21 +1,22 @@
 {% extends 'base.html' %} {% block content %}
 
 <h2>Login</h2>
+
 <form action="{{url_for('login')}}" method="POST" class="col s12">
-    <div class="input-field col s6">
-        <input id="username" name="username" type="text" class="validate login">
+    <div class="form-group">
         <label for="username">Username:</label>
+        <input id="username" name="username" type="text" class="form-control">
     </div>
 
-    <div class="input-field col s6">
-        <input id="password" name="password" type="text" class="validate login">
+    <div class="form-group">
         <label for="password">Password:</label>
+        <input id="password" name="password" type="password" class="form-control">
     </div>
     <div class="note">
         <p>Please note: Username and password are case sensitive</p>
     </div>
     <div class="row">
-        <button class="btn waves-effect waves-light" type="submit">Login</button>
+        <button class="btn btn-success" type="submit">Login</button>
     </div>
 </form>
 {% endblock %}
