@@ -98,6 +98,10 @@ def delete_plant(plant_id):
     mongo.db.plants.remove({'_id': ObjectId(plant_id)})
     return redirect(url_for('view_plants'))
 
+""" Browse all plant genera """
+@app.route('/genera')
+def genera():
+    return render_template('genera.html', plants=mongo.db.plants.find())
 
 """ Browse by plant genus """
 @app.route('/genus/<genus_name>')
