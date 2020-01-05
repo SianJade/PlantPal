@@ -2,19 +2,19 @@
 
 <h2>{{plant.latin_name}} - {{plant.common_name}}</h2>
 
-<ul class="collection with-header">
-    <li class="collection-header">Order: {{plant.order}}</li>
-    <li class="collection-header">Family: {{plant.family}}</li>
-    <li class="collection-header">Genus: {{plant.genus}}</li>
-    <li class="collection-header">Preferred lighting conditions: {{plant.preferred_lighting}}</li>
-    <li class="collection-header">Indoor or Outdoor: {{plant.indoor_outdoor}}</li>
-    <li class="collection-header">Watering frequency: {{plant.water_frequency}}</li>
-    <li class="collection-header">Preferred soil type: {{plant.soil_type}}</li>
-    <li class="collection-header">Additional notes: {{plant.additional_notes}}</li>
+<ul class="list-group">
+    <li class="list-group-item">Order: {{plant.order}}</li>
+    <li class="list-group-item">Family: {{plant.family}}</li>
+    <li class="list-group-item">Genus: {{plant.genus}}</li>
+    <li class="list-group-item">Preferred lighting conditions: {{plant.preferred_lighting}}</li>
+    <li class="list-group-item">Indoor or Outdoor: {{plant.indoor_outdoor}}</li>
+    <li class="list-group-item">Watering frequency: {{plant.water_frequency}}</li>
+    <li class="list-group-item">Preferred soil type: {{plant.soil_type}}</li>
+    <li class="list-group-item">Additional notes: {{plant.additional_notes}}</li>
 </ul>
 
 <div class="row">
-    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="waves-effect waves-light btn btn-small blue">Edit Plant</a><br>
+    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
     <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
 </div>
 {% endblock %}
