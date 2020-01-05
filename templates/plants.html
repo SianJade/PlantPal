@@ -5,7 +5,7 @@
 <ul class="list-group">
     {% for plant in plants %}
     <li class="list-group-item">{{plant.latin_name}} - {{plant.common_name}}
-        <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="waves-effect waves-light btn">
+        <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="btn btn-success">
             View Plant
         </a>
     </li>
