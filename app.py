@@ -87,7 +87,8 @@ def update_plant(plant_id):
         'indoor_outdoor': request.form.get('indoor_outdoor'),
         'water_frequency': request.form.get('water_frequency'),
         'soil_type': request.form.get('soil_type'),
-        'additional_notes': request.form.get('additional_notes')
+        'additional_notes': request.form.get('additional_notes'),
+        'updated_at': datetime.datetime.now()
     })
     return redirect(url_for('view_plant'))
 
