@@ -1,10 +1,11 @@
 import os
 import env
 import datetime
-from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
+from flask import Flask, render_template, redirect, request, url_for, session, escape, flash, g
 from flask_login import LoginManager, UserMixin, login_required
 from flask_pymongo import PyMongo
 import pymongo
+from functools import wraps
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
