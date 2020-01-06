@@ -8,7 +8,7 @@ The purpose of this project is to
 
 Wireframes for the dashboard can be found in the assets folder of the repository.
 
-A live desktop demo can be found [here](https://sianjade.github.io/climate-change-data-dashboard/).
+A live desktop demo can be found [here]().
 
 ## User stories
 ### User story 1:
@@ -77,12 +77,9 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 ## Deployment
 - The dashbaord is hosted via Heroku and is deployed from the master branch - this is to allow the deployed application to automatically update with any new commits that are made to the master branch.
 
-    - To deploy the dashboard to GitHub Pages, I first clicked the settings tab on the GitHub repository for the site.
-    - From here, I scrolled to the GitHub Pages section of the setting tab and changed the Source from 'none' to 'master branch'.
-    - This deployed the dashboard to GitHub Pages and provided me with a link to the hosted page, which I then copied and pasted into the decription of the repository.
     
 - To run this application locally:
-    - Click the green 'clone or download' button in the [GitHub repository for the project](https://github.com/SianJade/climate-change-data-dashboard).
+    - Click the green 'clone or download' button in the [GitHub repository for the project]().
     - Copy the link provided by clicking the clipboard button to the right of the link.
     - In your terminal, type `git clone`, paste in the previously copied link, and hit return.
     - The application should now be installed on your device.
