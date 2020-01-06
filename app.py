@@ -32,18 +32,19 @@ login_manager.init_app(app)
 
 @app.route('/index')
 def home():
+    """App route for index.html/home page"""
     return render_template('index.html')
 
 
-""" View all plants """
 @app.route('/plants')
 def view_plants():
+    """ View all individual plants in the database """
     return render_template('plants.html', plants=mongo.db.plants.find())
 
 
-""" Add a plant """
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
+    """ Add a new plant to the database """
     if request.method=='POST':
         plants  = mongo.db.plants
         form = request.form.to_dict()
@@ -54,27 +55,26 @@ def add_plant():
     return render_template("add_plant.html")
 
 
-""" View a plant """
 @app.route('/plants/<plant_id>', methods=['GET'])
 def view_plant(plant_id):
+    """ View one specific plant from the databse and all its details """
     plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
     return render_template('plant.html', plant=plant)
 
 
-""" Edit a plant """
 @app.route('/plant/edit/<plant_id>')
 def edit_plant(plant_id):
+    """ App route for the edit plant page """
     plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
-    # if request.method=='POST':
-    # form = request.form.to_dict()
-    # form.created_at = plant.created_at
-    # form.updated_at = datetime.datetime.now()
-    # form.created_by = input_created_by(plant.created_by, session['username'])
     return render_template('edit_plant.html', plant=plant)
 
 
 @app.route('/update_plant/<plant_id>', methods=["POST"])
 def update_plant(plant_id):
+    """
+    Update the details of a plant, the form is pre-filled with the all of the details for the
+    plant as it is currently stored in the database. 
+    """
     plant = mongo.db.plants
     plant.update({'_id': ObjectId(plant_id)},
     {
@@ -93,34 +93,49 @@ def update_plant(plant_id):
     return redirect(url_for('view_plant', plant_id=plant_id))
 
 
-""" Delete a plant """
+
 @app.route('/delete_plant/<plant_id>')
 def delete_plant(plant_id):
+    """ Delete a single plant and its detils from the database """
     mongo.db.plants.remove({'_id': ObjectId(plant_id)})
     return redirect(url_for('view_plants'))
 
-""" Browse all plant genera """
+
 @app.route('/genera')
 def genera():
+    """
+    Browse all plant genera, distinct() is used to ensure each genus is only
+    listed on the page once, otherwise multiple of the same genus name are displayed
+    if there is more than one plant of that genus in the database 
+    """
     return render_template('genera.html', plants=mongo.db.plants.distinct("genus"), genus_name=genus)
 
-""" See all plants within selected genus """
+
 @app.route('/genus/<genus_name>')
 def genus(genus_name):
+    """ See all plants within the genus selected by the user on genera.html """
     return render_template('genus.html', plants=mongo.db.plants.find({"genus": genus_name}), genus_name=genus_name)
     
 
-""" Search for a plant """
+
 @app.route('/get_search', methods=['POST'])
 def get_search():
+    """ 
+    Search for a plant by latin or common name, soil type, family, order, genus, indoor/outdoor, 
+    lighting preferences, and watering frequency 
+    """
     query = request.form['search_text']
     results = mongo.db.plants.find({'$text':{'$search': query}})
     return render_template('search_results.html', results=results, query=query)
 
 
-""" Create an account """
+
 @app.route('/user/new', methods=['GET', 'POST'])
 def create_account():
+    """ 
+    Create a new user account and return user.html showing the user's 
+    new account details uppon successful account creation
+    """
     if request.method=='POST':
         form = request.form.to_dict()
         user_password = generate_password_hash(form['password'])
@@ -138,9 +153,12 @@ def create_account():
 
 
 
-""" Login and Authentication """
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """ 
+    Check if the username is already in the session and redirect them to their profile if so
+    If the user is not in the session, redirect them to the login page
+    """
     if 'username' in session:
         user_in_database = mongo.db.users.find_one({'username': session['username']})
         if user_in_database:
@@ -152,6 +170,16 @@ def login():
 
 @app.route('/authentication', methods=['POST'])
 def authentication():
+    """ 
+    Authenticate username and password by checking the inputted username matches 
+    the inputted username stored in the users collection of the db, and that the 
+    inputted password matches the password stored in the db, and then that the 
+    password is the correct password for the inputted username. If the username
+    and password do not match or are incorrect, then the user will see a message 
+    informing them of this and the login page will refresh. If the inputted username
+    does not exist in the database at all, the user will see a message informing
+    them that an account does not exist for the user
+    """
     form = request.form.to_dict()
     user_in_db = mongo.db.users.find_one({'username': form['username']})
     if user_in_db:
@@ -167,14 +195,13 @@ def authentication():
 
 @app.route('/user/<user_id>', methods=['GET'])
 def profile(user_id):
+    """ Allows the user to see their profile details """
     return render_template('user.html', user=mongo.db.users.find_one({"_id": ObjectId(user_id)}), user_id=user_id)
 
 
-
-
-"""Log out of account"""
 @app.route('/logout')
 def logout():
+    """ Log out of account by clearing the session then redirect to index.html"""
     session.clear()
     flash("Logout successful")
     return redirect(url_for('home'))
