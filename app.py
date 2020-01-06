@@ -2,7 +2,7 @@ import os
 import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
-from flask_login import LoginManager, UserMixin
+from flask_login import LoginManager, UserMixin, login_required
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -43,13 +43,15 @@ def view_plants():
 
 
 @app.route('/plant/new', methods=['GET', 'POST'])
+# @login_required
 def add_plant():
     """ Add a new plant to the database """
     if request.method=='POST':
         plants  = mongo.db.plants
         form = request.form.to_dict()
-        #form.created_at = datetime.datetime.now()
-        #form.created_by = [session['username']]
+        form["created_at"] = datetime.datetime.now()
+        form["created_by"] = [session['username']]
+        form["updated_at"] = datetime.datetime.now()
         plants.insert_one(form)
         return redirect(url_for('view_plants'))
     return render_template("add_plant.html")
@@ -89,6 +91,7 @@ def update_plant(plant_id):
         'soil_type': request.form.get('soil_type'),
         'additional_notes': request.form.get('additional_notes'),
         'updated_at': datetime.datetime.now()
+        # 'created_by': 
     })
     return redirect(url_for('view_plant', plant_id=plant_id))
 
@@ -108,7 +111,7 @@ def genera():
     listed on the page once, otherwise multiple of the same genus name are displayed
     if there is more than one plant of that genus in the database 
     """
-    return render_template('genera.html', plants=mongo.db.plants.distinct("genus"), genus_name=genus)
+    return render_template('genera.html', genera=mongo.db.plants.distinct("genus"))
 
 
 @app.route('/plants/genus/<genus_name>')
@@ -144,8 +147,7 @@ def create_account():
             'last_name': form['last_name'],
             'email': form['email'],
             'username': form['username'],
-            'password': user_password,
-            're-enter_password': user_password
+            'password': user_password
         })
         user = mongo.db.users.find_one({"_id" : ObjectId(user_id.inserted_id)})
         return render_template('user.html', user=user)
@@ -159,13 +161,7 @@ def login():
     Check if the username is already in the session and redirect them to their profile if so
     If the user is not in the session, redirect them to the login page
     """
-    if 'username' in session:
-        user_in_database = mongo.db.users.find_one({'username': session['username']})
-        if user_in_database:
-            flash('Logged in as %s' % escape(session['username']))
-            return redirect(url_for('profile', user_id=user_in_database['username']))
-    else:
-        return render_template("login.html")
+    return render_template("login.html")
 
 
 @app.route('/authentication', methods=['POST'])
