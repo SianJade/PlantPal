@@ -157,14 +157,13 @@ def authentication():
     if user_in_db:
         if check_password_hash(user_in_db['password'], form['password']):
             session['username'] = form['username']
-            flash("Login successful")
             return redirect(url_for('profile', user_id=user_in_db['_id']))
         else:
-            flash("Wrong username or password")
+            session['message'] = "Wrong username or password"
             return redirect(url_for('login'))
     else:
-        flash("An account does not exist for this username")
-        return redirect(url_for('create_account'))
+        session['message'] = "An account does not exist for this username" 
+        return redirect(url_for('login'))
 
 @app.route('/user/<user_id>', methods=['GET'])
 def profile(user_id):
