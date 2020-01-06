@@ -113,7 +113,9 @@ def genera():
     listed on the page once, otherwise multiple of the same genus name are displayed
     if there is more than one plant of that genus in the database 
     """
-    return render_template('genera.html', genera=mongo.db.plants.distinct("genus"))
+    genera = mongo.db.plants.distinct("genus")
+    genera.sort()
+    return render_template('genera.html', genera=genera)
 
 
 @app.route('/plants/genus/<genus_name>')
