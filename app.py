@@ -4,6 +4,7 @@ import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_login import LoginManager, UserMixin, login_required
 from flask_pymongo import PyMongo
+import pymongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -39,11 +40,11 @@ def home():
 @app.route('/plants')
 def view_plants():
     """ View all individual plants in the database """
-    return render_template('plants.html', plants=mongo.db.plants.find())
+    return render_template('plants.html', plants=mongo.db.plants.find().sort('latin_name', pymongo.ASCENDING))
 
 
 @app.route('/plant/new', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def add_plant():
     """ Add a new plant to the database """
     if request.method=='POST':
