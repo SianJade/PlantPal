@@ -102,7 +102,7 @@ def delete_plant(plant_id):
 """ Browse all plant genera """
 @app.route('/genera')
 def genera():
-    return render_template('genera.html', plants=mongo.db.plants.distinct({"genus": genus}), genus_name=genus)
+    return render_template('genera.html', plants=mongo.db.plants.distinct("genus"), genus_name=genus)
 
 """ See all plants within selected genus """
 @app.route('/genus/<genus_name>')
