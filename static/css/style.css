@@ -16,6 +16,11 @@
     margin: 0;
 }
 
+.add-plant-input,
+.edit-plant-input {
+    text-transform: lowercase;
+}
+
 /* ------------ MEDIA QUERIES ----------- */
 
 /* --------- SMALL DEVICES ----------- */
