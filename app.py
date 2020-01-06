@@ -62,14 +62,14 @@ def view_plant(plant_id):
     return render_template('plant.html', plant=plant)
 
 
-@app.route('/plant/edit/<plant_id>')
+@app.route('/plants/edit/<plant_id>')
 def edit_plant(plant_id):
     """ App route for the edit plant page """
     plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
     return render_template('edit_plant.html', plant=plant)
 
 
-@app.route('/update_plant/<plant_id>', methods=["POST"])
+@app.route('/plants/update_plant/<plant_id>', methods=["POST"])
 def update_plant(plant_id):
     """
     Update the details of a plant, the form is pre-filled with the all of the details for the
@@ -94,14 +94,14 @@ def update_plant(plant_id):
 
 
 
-@app.route('/delete_plant/<plant_id>')
+@app.route('/plants/delete_plant/<plant_id>')
 def delete_plant(plant_id):
     """ Delete a single plant and its detils from the database """
     mongo.db.plants.remove({'_id': ObjectId(plant_id)})
     return redirect(url_for('view_plants'))
 
 
-@app.route('/genera')
+@app.route('/plants/genera')
 def genera():
     """
     Browse all plant genera, distinct() is used to ensure each genus is only
@@ -111,7 +111,7 @@ def genera():
     return render_template('genera.html', plants=mongo.db.plants.distinct("genus"), genus_name=genus)
 
 
-@app.route('/genus/<genus_name>')
+@app.route('/plants/genus/<genus_name>')
 def genus(genus_name):
     """ See all plants within the genus selected by the user on genera.html """
     return render_template('genus.html', plants=mongo.db.plants.find({"genus": genus_name}), genus_name=genus_name)
