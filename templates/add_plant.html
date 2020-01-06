@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
-<h3>Add a Plant</h3>
+<h1>Add a Plant</h1>
 
-<div class="container-fluid">
+<div class="container">
   <form action="{{url_for('add_plant')}}" method="POST">
     <div class="row">
       <div class="form-group">
@@ -48,7 +48,11 @@
     <div class="row">
       <div class="form-group">
         <label for="indoor_outdoor">Indoor/Outdoor</label>
-        <input id="indoor_outdoor" name="indoor_outdoor" type="text" class="form-control add-plant-input">
+        <select class="form-control" name="indoor_outdoor" id="indoor_outdoor">
+          <option value="Indoor">Indoor</option>
+          <option value="Outdoor">Outdoor</option>
+          <option value="Either">Either</option>
+        </select>
       </div>
     </div>
 
@@ -72,7 +76,7 @@
         <textarea id="additional_notes" name="additional_notes" type="text" class="form-control"></textarea>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="form-group">
         <label for="plant-image">Upload plant photo</label>
