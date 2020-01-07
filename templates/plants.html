@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-
-<h2>All Plants</h2>
-
+<br>
+<h1 class="offset-xl-5 offset-lg-5">All Plants</h1>
+<br>
 <ul class="list-group">
     {% for plant in plants %}
-    <li class="list-group-item">{{plant.latin_name}} - {{plant.common_name}}
-        <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="btn btn-success">
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        {{plant.latin_name}} - {{plant.common_name}}
+        <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="btn btn-success btn-small">
             View Plant
         </a>
     </li>
