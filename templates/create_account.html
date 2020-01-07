@@ -1,54 +1,53 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container-fluid">
-  <h3>Create Account</h3>
-
+<br>
+<h1 class="offset-xl-5 offset-lg-5">Create Account</h1>
+ 
+<div class="container">
   <div class="row">
-    <h6>Already have an account? <a href="{{url_for('login')}}">Login</a></h6>
+    <h6 class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">Already have an account? <a href="{{url_for('login')}}">Login</a></h6>
   </div>
 
-  <div class="row">
     <form action="{{url_for('create_account')}}" method="POST">
       <div class="row">
-        <div class="form-group">
-          <label for="first_name">First Name</label>
+        <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+          <label for="first_name">First Name:</label>
           <input id="first_name" name="first_name" type="text" class="form-control">
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <label for="last_name">Last Name</label>
+        <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+          <label for="last_name">Last Name:</label>
           <input id="last_name" name="last_name" type="text" class="form-control">
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <label for="email">Email</label>
+        <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+          <label for="email">Email:</label>
           <input id="email" name="email" type="email" class="form-control">
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <label for="username">Username</label>
+        <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+          <label for="username">Username:</label>
           <input id="username" name="username" type="text" class="form-control">
         </div>
       </div>
+      <span>{{session.message}}</span>
 
       <div class="row">
-        <div class="form-group">
-          <label for="hashed_pwd">Password</label>
+        <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+          <label for="hashed_pwd">Password:</label>
           <input id="hashed_pwd" name="password" type="password" class="form-control">
         </div>
       </div>
 
       <div class="row">
-        <button class="btn btn-success" type="submit">Create Account</button>
+        <button class="btn btn-success offset-xl-6 offset-lg-6" type="submit">Create Account</button>
       </div>
-
     </form>
   </div>
-</div>
 {% endblock %}
