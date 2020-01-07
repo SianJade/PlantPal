@@ -36,8 +36,9 @@ def view_plants():
 
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
-    """ Add a new plant to the database """
+    """ Check if the user is logged in """
     if 'username' in session:
+        """ If they are, they may add a new plant to the database """
         if request.method=='POST':
             plants  = mongo.db.plants
             form = request.form.to_dict()
@@ -48,6 +49,7 @@ def add_plant():
             return redirect(url_for('view_plants'))
         return render_template("add_plant.html")
     else:
+        """ If the user is not logged in, redirect them to the login page """
         flash('You must be logged in to view this page')
         return render_template('login.html')
 
@@ -61,9 +63,15 @@ def view_plant(plant_id):
 
 @app.route('/plants/edit/<plant_id>')
 def edit_plant(plant_id):
-    """ App route for the edit plant page """
-    plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
-    return render_template('edit_plant.html', plant=plant)
+    """ Check if the user is logged in """
+    if 'username' in session:
+        """ If they are, allow the user to edit plant details """
+        plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
+        return render_template('edit_plant.html', plant=plant)
+    else:
+        """ If the user is not logged in, redirect them to the login page """
+        flash('You must be logged in to view this page')
+        return render_template('login.html')
 
 
 @app.route('/plants/update_plant/<plant_id>', methods=["POST"])
