@@ -42,10 +42,13 @@ def add_plant():
         if request.method=='POST':
             plants  = mongo.db.plants
             form = request.form.to_dict()
+            """ Check if a plant with the inputted latin name already exists in the database """
             plant_in_db = mongo.db.plants.find_one({'latin_name': form['latin_name']})
             if plant_in_db:
+                """ If the plant does already exist in the database, inform the user """
                 session['message'] = "A page already exists for this plant"
             else:
+                """ If the plant does not already exist in the databse, allow the plant info to be saved to the database """
                 form["created_at"] = datetime.datetime.now()
                 form["created_by"] = [session['username']]
                 form["updated_at"] = datetime.datetime.now()
