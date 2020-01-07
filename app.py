@@ -13,12 +13,12 @@ from werkzeug.utils import secure_filename
 
 """ App config """
 app = Flask(__name__)
-
-
-""" MongoDB config """
 app.config["MONGO_DBNAME"] = 'PlantPal'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["SECRET_KEY"] = os.getenv("SECRET")
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max file size that can be uploaded
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 mongo = PyMongo(app)
