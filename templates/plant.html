@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<h2>{{plant.latin_name}} - {{plant.common_name}}</h2>
+<h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
 
 <ul class="list-group">
+    <img src="{{ plant.plant_image }}" />
     <li class="list-group-item">Order: {{plant.order}}</li>
     <li class="list-group-item">Family: {{plant.family}}</li>
     <li class="list-group-item">Genus: {{plant.genus}}</li>
