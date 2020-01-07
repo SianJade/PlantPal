@@ -42,11 +42,15 @@ def add_plant():
         if request.method=='POST':
             plants  = mongo.db.plants
             form = request.form.to_dict()
-            form["created_at"] = datetime.datetime.now()
-            form["created_by"] = [session['username']]
-            form["updated_at"] = datetime.datetime.now()
-            plants.insert_one(form)
-            return redirect(url_for('view_plants'))
+            plant_in_db = mongo.db.plants.find_one({'latin_name': form['latin_name']})
+            if plant_in_db:
+                session['message'] = "A page already exists for this plant"
+            else:
+                form["created_at"] = datetime.datetime.now()
+                form["created_by"] = [session['username']]
+                form["updated_at"] = datetime.datetime.now()
+                plants.insert_one(form)
+                return redirect(url_for('view_plants'))
         return render_template("add_plant.html")
     else:
         """ If the user is not logged in, redirect them to the login page """
