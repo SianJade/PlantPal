@@ -1,10 +1,11 @@
 {% extends 'base.html' %} {% block content %}
-
-<h2>Search Results</h2>
-
+<br>
+<h1 class="offset-xl-5 offset-lg-5">Search Results</h1>
+<br>
 <ul class="list-group">
     {% for result in results %}
-    <li class="list-group-item">{{result.latin_name}} - {{result.common_name}}
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        {{result.latin_name}} - {{result.common_name}}
         <a href="{{url_for('view_plant', plant_id=result._id)}}" class="btn btn-success">
             View Plant
         </a>
