@@ -8,6 +8,7 @@ import pymongo
 from functools import wraps
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 
 
 """ App config """
@@ -45,7 +46,7 @@ def view_plants():
 
 
 @app.route('/plant/new', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def add_plant():
     """ Add a new plant to the database """
     if request.method=='POST':
