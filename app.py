@@ -1,11 +1,10 @@
 import os
 import env
 import datetime
-from flask import Flask, render_template, redirect, request, url_for, session, escape, flash, g
+from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_login import LoginManager, UserMixin, login_required
 from flask_pymongo import PyMongo
 import pymongo
-from functools import wraps
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -42,18 +41,21 @@ def view_plants():
 
 
 @app.route('/plant/new', methods=['GET', 'POST'])
-# @login_required
 def add_plant():
     """ Add a new plant to the database """
-    if request.method=='POST':
-        plants  = mongo.db.plants
-        form = request.form.to_dict()
-        form["created_at"] = datetime.datetime.now()
-        form["created_by"] = [session['username']]
-        form["updated_at"] = datetime.datetime.now()
-        plants.insert_one(form)
-        return redirect(url_for('view_plants'))
-    return render_template("add_plant.html")
+    if 'username' in session:
+        if request.method=='POST':
+            plants  = mongo.db.plants
+            form = request.form.to_dict()
+            form["created_at"] = datetime.datetime.now()
+            form["created_by"] = [session['username']]
+            form["updated_at"] = datetime.datetime.now()
+            plants.insert_one(form)
+            return redirect(url_for('view_plants'))
+        return render_template("add_plant.html")
+    else:
+        flash('You must be logged in to view this page')
+        return render_template('login.html')
 
 
 @app.route('/plants/<plant_id>', methods=['GET'])
