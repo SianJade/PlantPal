@@ -46,7 +46,7 @@ def add_plant():
             plant_in_db = mongo.db.plants.find_one({'latin_name': form['latin_name']})
             if plant_in_db:
                 """ If the plant does already exist in the database, inform the user """
-                session['message'] = "A page already exists for this plant"
+                flash("A page already exists for this plant")
             else:
                 """ If the plant does not already exist in the databse, allow the plant info to be saved to the database """
                 form["created_at"] = datetime.datetime.now()
@@ -57,7 +57,7 @@ def add_plant():
         return render_template("add_plant.html")
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash('You must be logged in to view this page')
+        flash("You must be logged in to add a plant")
         return render_template('login.html')
 
 
@@ -77,7 +77,7 @@ def edit_plant(plant_id):
         return render_template('edit_plant.html', plant=plant)
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash('You must be logged in to edit a plant page')
+        flash("You must be logged in to edit a plant page")
         return render_template('login.html')
 
 
@@ -116,7 +116,7 @@ def delete_plant(plant_id):
         return redirect(url_for('view_plants'))
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash('You must be logged in to delete a plant')
+        flash("You must be logged in to delete a plant page")
         return render_template('login.html')
 
 
@@ -161,7 +161,7 @@ def create_account():
         form = request.form.to_dict()
         user_in_db = mongo.db.users.find_one({'username': form['username']})
         if user_in_db:
-            session['message'] = "An account already exists for this username" 
+            flash("An account already exists for this username - please pick a new username") 
         else:
             user_password = generate_password_hash(form['password'])
             user_id = mongo.db.users.insert_one({
@@ -205,10 +205,10 @@ def authentication():
             session['username'] = form['username']
             return redirect(url_for('profile', user_id=user_in_db['_id']))
         else:
-            session['message'] = "Wrong username or password"
+            flash("Wrong username or password")
             return redirect(url_for('login'))
     else:
-        session['message'] = "An account does not exist for this username" 
+        flash("An account does not exist for this username") 
         return redirect(url_for('login'))
 
 @app.route('/user/<user_id>', methods=['GET'])
