@@ -10,15 +10,16 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'} #specifies allowed image file types
+UPLOAD_FOLDER = '/static/assets/plant_images' #specifies the file location which images are uploaded to
 
 """ App config """
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'PlantPal'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["SECRET_KEY"] = os.getenv("SECRET")
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max file size that can be uploaded
-
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 mongo = PyMongo(app)
@@ -58,6 +59,32 @@ def add_plant():
         plants.insert_one(form)
         return redirect(url_for('view_plants'))
     return render_template("add_plant.html")
+
+
+def allowed_file(filename):
+    """ checks if an image file extension is valid """
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/plant/new', methods=['GET', 'POST'])
+def upload_file():
+    """ Upload an image of chosen plant """
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(url_for('add_plant'))
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(url_for('add_plant'))
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
 
 
 @app.route('/plants/<plant_id>', methods=['GET'])
