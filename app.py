@@ -70,7 +70,7 @@ def edit_plant(plant_id):
         return render_template('edit_plant.html', plant=plant)
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash('You must be logged in to view this page')
+        flash('You must be logged in to edit a plant page')
         return render_template('login.html')
 
 
@@ -102,9 +102,15 @@ def update_plant(plant_id):
 
 @app.route('/plants/delete_plant/<plant_id>')
 def delete_plant(plant_id):
-    """ Delete a single plant and its detils from the database """
-    mongo.db.plants.remove({'_id': ObjectId(plant_id)})
-    return redirect(url_for('view_plants'))
+    """ Check if the user is logged in """
+    if 'username' in session:
+        """ If they are, allow the user to delete a plant and its details """
+        mongo.db.plants.remove({'_id': ObjectId(plant_id)})
+        return redirect(url_for('view_plants'))
+    else:
+        """ If the user is not logged in, redirect them to the login page """
+        flash('You must be logged in to delete a plant')
+        return render_template('login.html')
 
 
 @app.route('/plants/genera')
