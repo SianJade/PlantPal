@@ -1,88 +1,90 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Edit Plant Details</h1>
+<br>
+<h1 class="offset-xl-5 offset-lg-5">Edit Plant Details</h1>
 
 <div class="container-fluid">
   <form action="{{url_for('update_plant', plant_id=plant._id)}}" method="POST">
     <div class="row">
-      <div class="form-group">
-        <label for="latin_name">Latin Name (Species)</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="latin_name">Latin Name (Species):</label>
         <input id="latin_name" name="latin_name" type="text" class="form-control edit-plant-input" value="{{plant.latin_name}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="common_name">Common Name</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="common_name">Common Name:</label>
         <input id="common_name" name="common_name" type="text" class="form-control edit-plant-input" value="{{plant.common_name}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="order">Order</label>
-        <input id="order" name="order" type="text" class="form-control edit-plant-input"value="{{plant.order}}">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="order">Order:</label>
+        <input id="order" name="order" type="text" class="form-control edit-plant-input" value="{{plant.order}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="family">Family</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="family">Family:</label>
         <input id="family" name="family" type="text" class="form-control edit-plant-input" value="{{plant.family}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="genus">Genus</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="genus">Genus:</label>
         <input id="genus" name="genus" type="text" class="form-control edit-plant-input" value="{{plant.genus}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="preferred_lighting">Preferred Lighting</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="preferred_lighting">Preferred Lighting:</label>
         <input id="preferred_lighting" name="preferred_lighting" type="text" class="form-control edit-plant-input" value="{{plant.preferred_lighting}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="indoor_outdoor">Indoor/Outdoor</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="indoor_outdoor">Indoor/Outdoor:</label>
         <input id="indoor_outdoor" name="indoor_outdoor" type="text" class="form-control edit-plant-input" value="{{plant.indoor_outdoor}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="water_frequency">Watering Frequency</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="water_frequency">Watering Frequency:</label>
         <input id="water_frequency" name="water_frequency" type="text" class="form-control edit-plant-input" value="{{plant.water_frequency}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="soil_type">Reccommended Soil Type</label>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="soil_type">Reccommended Soil Type:</label>
         <input id="soil_type" name="soil_type" type="text" class="form-control edit-plant-input" value="{{plant.soil_type}}">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group add-plant-input">
-        <label for="additional_notes">Additional Notes</label>
-        <textarea id="additional_notes" name="additional_notes" type="text" class="form-control" value="{{plant.additional_notes}}"></textarea>
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="additional_notes">Additional Notes:</label>
+        <textarea id="additional_notes" name="additional_notes" type="text" class="form-control add-plant-input" value="{{plant.additional_notes}}"></textarea>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group add-plant-input">
-        <label for="plant_image">Plant Photo</label>
-        <p>To add a plant photo, please upload your chosen plant photo to <a href="https://postimages.org/">postimages.org</a> and copy the provided 'direct link' code into the input box below</p>
-        <input type="text" class="form-control" id="plant_image" name="plant_image" placeholder="Add plant image link">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="plant_image">Plant Photo:</label>
+        <input id="plant_image" type="text" class="form-control add-plant-input" name="plant_image" placeholder="Add plant image link">
+        <p>To add a plant photo, please upload your chosen plant photo to <a href="https://postimages.org/" target="_blank">postimages.org</a> and copy and paste the provided 'direct link' (second link down in list on postimages) into the input box above.
+        </p>
       </div>
     </div>
 
     <div class="row">
-      <button class="btn btn-success" type="submit">Update Plant</button>
+      <button class="btn btn-success offset-xl-5 offset-lg-5" type="submit">Update Plant</button>
     </div>
 
   </form>
