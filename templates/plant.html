@@ -1,21 +1,44 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
-
+<br>
+<h1 class="offset-xl-4 offset-lg-4">{{plant.latin_name}} - {{plant.common_name}}</h1>
+<br>
+<img class="col-xl-4 offset-xl-4 col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-xs-6 offset-xs-3" src="{{ plant.plant_image }}" />
+<br>
+<br>
 <ul class="list-group">
-    <img src="{{ plant.plant_image }}" />
-    <li class="list-group-item">Order: {{plant.order}}</li>
-    <li class="list-group-item">Family: {{plant.family}}</li>
-    <li class="list-group-item">Genus: {{plant.genus}}</li>
-    <li class="list-group-item">Preferred lighting conditions: {{plant.preferred_lighting}}</li>
-    <li class="list-group-item">Indoor or Outdoor: {{plant.indoor_outdoor}}</li>
-    <li class="list-group-item">Watering frequency: {{plant.water_frequency}}</li>
-    <li class="list-group-item">Preferred soil type: {{plant.soil_type}}</li>
-    <li class="list-group-item">Additional notes: {{plant.additional_notes}}</li>
+    <span>{{session.message}}</span>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Order: {{plant.order}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Family: {{plant.family}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Genus: {{plant.genus}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Preferred lighting conditions: {{plant.preferred_lighting}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Indoor or Outdoor: {{plant.indoor_outdoor}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Watering frequency: {{plant.water_frequency}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Preferred soil type: {{plant.soil_type}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Additional notes: {{plant.additional_notes}}
+    </li>
 </ul>
-
+<br>
 <div class="row">
-    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
-    <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
+    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success offset-xl-5">Edit Plant</a><br>
+</div>
+<br>
+<div class="row">
+    <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" class="offset-xl-5">Delete plant info</a>
 </div>
 {% endblock %}
