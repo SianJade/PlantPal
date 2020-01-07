@@ -1,11 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 
-<h5>My Account </h5>
+<h1 class="offset-xl-5 offset-lg-5">My Account </h1>
 <ul class="list-group">
-    <li class="list-group-item">First Name: {{user.first_name}}</li>
-    <li class="list-group-item">Last Name: {{user.last_name}}</li>
-    <li class="list-group-item">Email: {{user.email}}</li>
-    <li class="list-group-item">Username: {{user.username}}</li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        First Name: {{user.first_name}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Last Name: {{user.last_name}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Email: {{user.email}}
+    </li>
+    <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        Username: {{user.username}}
+    </li>
 </ul>
 
 {% endblock %}
