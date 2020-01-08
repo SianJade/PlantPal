@@ -8,7 +8,6 @@ h2 {
 
 .navbar {
     background-color: #006600;
-    width: 100vw;
     padding-left: 0;
     margin: 0;
 }
@@ -84,7 +83,6 @@ h2 {
 /* ------------ MEDIUM DEVICES ----------*/
 
 @media screen and (min-width:701px) and (max-width:1099px) {
-
 
     .navbar {
         height: 65px;
