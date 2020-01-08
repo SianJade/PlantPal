@@ -100,12 +100,15 @@ def update_plant(plant_id):
         'water_frequency': request.form.get('water_frequency'),
         'soil_type': request.form.get('soil_type'),
         'additional_notes': request.form.get('additional_notes'),
-        'updated_at': datetime.datetime.now()
-        # 'created_by': 
+        'plant_image': request.form.get('plant_image'),
+        'updated_at': datetime.datetime.now(),
+        'created_by': request.form.get('created_by')
     })
     return redirect(url_for('view_plant', plant_id=plant_id))
 
-
+# def updated_by():
+#     plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
+#     plant["created_by"][0] == session['username']
 
 @app.route('/plants/delete_plant/<plant_id>')
 def delete_plant(plant_id):
