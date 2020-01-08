@@ -109,7 +109,7 @@ def delete_plant(plant_id):
     if 'username' in session:
         """ If they are, allow the user to delete a plant and its details """
         plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
-        if plant["created_by"][0] == session['username']:
+        if plant["created_by"] == session['username']:
             mongo.db.plants.remove({'_id': ObjectId(plant_id)})
             return redirect(url_for('view_plants'))
         else:
