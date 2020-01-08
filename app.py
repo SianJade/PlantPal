@@ -112,11 +112,16 @@ def delete_plant(plant_id):
     """ Check if the user is logged in """
     if 'username' in session:
         """ If they are, allow the user to delete a plant and its details """
-        mongo.db.plants.remove({'_id': ObjectId(plant_id)})
-        return redirect(url_for('view_plants'))
+        plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
+        if plant["created_by"][0] == session['username']:
+            mongo.db.plants.remove({'_id': ObjectId(plant_id)})
+            return redirect(url_for('view_plants'))
+        else:
+            session['message'] = "Only the initial creator of this plant's page has permission to delete it" 
+            return redirect(url_for('view_plant', plant_id=plant_id)) 
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash("You must be logged in to delete a plant page")
+        flash("You must be logged in to delete a plant")
         return render_template('login.html')
 
 
