@@ -4,7 +4,7 @@ Stream Three Project: Data-Centric Development - Code Institute
  
 ## UX
 
-The purpose of this project is to 
+The purpose of this project is to collect and display data about various plant species - both house plants and outdoor - in order for users to be able to find out information about a plant they have searched for, or plants within a certain genus or family, as well as to present the user with information aboout best care practices for their plants, such as what their lighting requirements are, how often they require watering, and what kind of soil they will best thrive in. For added visual context, a plant photo is supplied alongside each plant's information.
 
 Wireframes for the application can be found in the assets folder of the repository.
 
@@ -37,6 +37,8 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 - Users are able to submit details of new plants to the database via the 'Add a Plant' page, including details such as the plant's Latin name, common name, genus, preferred ligthting conditions and watering frequency, as well as an image of the plant in order to provide the visual context of the plant's appearance for other users.
 
 - The application features Flask's flashed messages feature wherever relevant (such as upon entry of an incorrect username or password, or if a user attempts to add/edit a plant without having logged in first) in order to inform the user of input errors or if they are unable to perform their desired action and why this is.
+
+- For the sake of good UX practices, the application's flashed messages are contained in dismissable alert boxes so that once the user has read the alert information, they can clear the message from the screen without having to refresh the page or navigate to a different page within the application.
 
 - As MongoDB cannot store image files, images are instead uploaded to the database as a string via a text input. Below the this input field are instructions on how to upload their chosen image to the database - the user must click the anchor text, where a new tab will open using `target="_blank"` and take the user to image sharing site [PostImages](https://postimages.org/) where they can upload their chosen plant image, and then (as instructed on the Add Plant page) copy the direct link to the image and paste this into the plant image input. This image is then displayed at the top of the plant's information page once it has been submitted to the database. For user convenience, I opted to find an image sharing site that did not require the user to first create an account before they were able to upload an image and retrieve the required link, as I felt this would not be best UX pratice in terms of convenience for the user. Whilst hotlinking is also not best UX practice, because of the constraints of MongoDB's available field types, this was the most suitable option for image hosting in this particular project.
 
@@ -91,7 +93,7 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 
 ## Credits
 
-- The code used to facilitate flashed messages has been adapted from code found at [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/)
+- The code used to facilitate flashed messages has been adapted from code found at [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/).
 
 ### Content
 
