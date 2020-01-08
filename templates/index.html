@@ -2,8 +2,8 @@
 
 <div class="jumbotron jumbotron-fluid">
     {% with errors = get_flashed_messages(category_filter=["logout_success"]) %} {% if errors %}
-    <div class="alert-message block-message error">
-        <a class="close" href="#">×</a>
+    <div class="alert alert-success col-xl-4 offset-xl-4 alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
             {%- for msg in errors %}
             <p>{{ msg }}</p>
@@ -12,18 +12,18 @@
     </div>
     {% endif %} {% endwith %}
     <div class="headings-and-search">
-        <h1 class="landing-header display-1">
+        <h1 class="landing-header display-1 offset-xl-6">
             Plant Pal
         </h1>
         <br>
-        <h2 class="landing-subhead">
+        <h2 class="landing-subhead offset-xl-6">
             Your one-stop plant encyclopedia
         </h2>
         <br>
         <form action="{{ url_for('get_search') }}" method="post">
-            <input class="form-control home-search col-xl-4" id="q" name="search_text" type="search" placeholder="Search all plants">
+            <input class="form-control home-search col-xl-4 offset-xl-7" id="q" name="search_text" type="search" placeholder="Search all plants">
             <br>
-            <button type="submit" class="btn btn-success">Search</button>
+            <button type="submit" class="btn btn-success offset-xl-6">Search</button>
         </form>
     </div>
 </div>
