@@ -40,7 +40,6 @@ def add_plant():
     if 'username' in session:
         """ If they are, they may add a new plant to the database """
         if request.method=='POST':
-            plants  = mongo.db.plants
             form = request.form.to_dict()
             """ Check if a plant with the inputted latin name already exists in the database """
             plant_in_db = mongo.db.plants.find_one({'latin_name': form['latin_name']})
@@ -52,8 +51,9 @@ def add_plant():
                 form["created_at"] = datetime.datetime.now()
                 form["created_by"] = [session['username']]
                 form["updated_at"] = datetime.datetime.now()
-                plants.insert_one(form)
-                return redirect(url_for('view_plants'))
+                plant_id = mongo.db.plants.insert_one(form)
+                plant = mongo.db.plants.find_one({"_id" : ObjectId(plant_id.inserted_id)})
+                return render_template('plant.html', plant=plant)
         return render_template("add_plant.html")
     else:
         """ If the user is not logged in, redirect them to the login page """
