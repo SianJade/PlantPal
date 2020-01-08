@@ -45,7 +45,7 @@ def add_plant():
             plant_in_db = mongo.db.plants.find_one({'latin_name': form['latin_name']})
             if plant_in_db:
                 """ If the plant does already exist in the database, inform the user """
-                flash("A page already exists for this plant")
+                flash(u'A page already exists for this plant', 'plant_exists')
             else:
                 """ If the plant does not already exist in the databse, allow the plant info to be saved to the database """
                 form["created_at"] = datetime.datetime.now()
@@ -57,7 +57,7 @@ def add_plant():
         return render_template("add_plant.html")
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash("You must be logged in to add a plant")
+        flash(u'You must be logged in', 'login')
         return render_template('login.html')
 
 
@@ -77,7 +77,7 @@ def edit_plant(plant_id):
         return render_template('edit_plant.html', plant=plant)
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash("You must be logged in to edit a plant page")
+        flash(u'You must be logged in', 'login')
         return render_template('login.html')
 
 
@@ -120,11 +120,11 @@ def delete_plant(plant_id):
             mongo.db.plants.remove({'_id': ObjectId(plant_id)})
             return redirect(url_for('view_plants'))
         else:
-            session['message'] = "Only the initial creator of this plant's page has permission to delete it" 
+            flash(u'Only the initial creator of the page for this plant has permission to delete it', 'delete')
             return redirect(url_for('view_plant', plant_id=plant_id)) 
     else:
         """ If the user is not logged in, redirect them to the login page """
-        flash("You must be logged in to delete a plant")
+        flash(u'You must be logged in', 'login')
         return render_template('login.html')
 
 
@@ -169,7 +169,7 @@ def create_account():
         form = request.form.to_dict()
         user_in_db = mongo.db.users.find_one({'username': form['username']})
         if user_in_db:
-            flash("An account already exists for this username - please pick a new username") 
+            flash(u'An account already exists for this username - please pick a new username', 'username_exists')
         else:
             user_password = generate_password_hash(form['password'])
             user_id = mongo.db.users.insert_one({
@@ -213,10 +213,10 @@ def authentication():
             session['username'] = form['username']
             return redirect(url_for('profile', user_id=user_in_db['_id']))
         else:
-            flash("Wrong username or password")
+            flash(u'Wrong username or password', 'wrong')
             return redirect(url_for('login'))
     else:
-        flash("An account does not exist for this username") 
+        flash(u'An account does not exist for this username', 'user_does_not_exist') 
         return redirect(url_for('login'))
 
 @app.route('/user/<user_id>', methods=['GET'])
@@ -229,7 +229,7 @@ def profile(user_id):
 def logout():
     """ Log out of account by clearing the session then redirect to index.html"""
     session.clear()
-    flash("Logout successful")
+    flash(u'Logout successful', 'logout_success')
     return redirect(url_for('home'))
 
 
