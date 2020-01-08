@@ -2,8 +2,7 @@
 <div class="container-fluid bg-img">
     <br>
     <h1 class="offset-xl-4 offset-lg-4">{{plant.latin_name}} - {{plant.common_name}}</h1>
-    <br> 
-    {% with errors = get_flashed_messages(category_filter=["delete"]) %} {% if errors %}
+    <br> {% with errors = get_flashed_messages(category_filter=["delete"]) %} {% if errors %}
     <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
@@ -42,13 +41,15 @@
             Additional notes: {{plant.additional_notes}}
         </li>
     </ul>
-    <br>
+    <br> {% if 'user_id' in session %}
     <div class="row">
         <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success offset-xl-5">Edit Plant</a><br>
     </div>
-    <br>
+    {% endif %}
+    <br> {% if 'user_id' in session %} {% if user_id == session['user_id'] %}
     <div class="row">
         <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" class="offset-xl-5">Delete plant info</a>
     </div>
+    {% endif %} {% endif%}
 </div>
 {% endblock %}
