@@ -2,12 +2,21 @@
 <div class="container-fluid bg-img">
     <br>
     <h1 class="offset-xl-4 offset-lg-4">{{plant.latin_name}} - {{plant.common_name}}</h1>
-    <br>
+    <br> 
+    {% with errors = get_flashed_messages(category_filter=["delete"]) %} {% if errors %}
+    <div class="alert-message block-message error">
+        <a class="close" href="#">×</a>
+        <ul>
+            {%- for msg in errors %}
+            <p>{{ msg }}</p>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %} {% endwith %}
     <img class="col-xl-4 offset-xl-4 col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-xs-6 offset-xs-3" src="{{ plant.plant_image }}" />
     <br>
     <br>
     <ul class="list-group">
-        <span>{{session.message}}</span>
         <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
             Order: {{plant.order}}
         </li>

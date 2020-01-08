@@ -1,6 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="jumbotron jumbotron-fluid">
+    {% with errors = get_flashed_messages(category_filter=["logout_success"]) %} {% if errors %}
+    <div class="alert-message block-message error">
+        <a class="close" href="#">×</a>
+        <ul>
+            {%- for msg in errors %}
+            <p>{{ msg }}</p>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %} {% endwith %}
     <div class="headings-and-search">
         <h1 class="landing-header display-1">
             Plant Pal
@@ -11,8 +21,7 @@
         </h2>
         <br>
         <form action="{{ url_for('get_search') }}" method="post">
-            <input class="form-control home-search col-xl-4" 
-            id="q" name="search_text" type="search" placeholder="Search all plants">
+            <input class="form-control home-search col-xl-4" id="q" name="search_text" type="search" placeholder="Search all plants">
             <br>
             <button type="submit" class="btn btn-success">Search</button>
         </form>
