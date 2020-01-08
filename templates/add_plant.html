@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
-<br>
-<h1 class="offset-xl-5 offset-lg-5">Add a Plant</h1>
 
-<div class="container">
+<div class="container-fluid bg-img">
+  <br>
+  <h1 class="offset-xl-5 offset-lg-5">Add a Plant</h1>
+
   <form action="{{url_for('add_plant')}}" method="POST">
     <span>{{session.message}}</span>
     <div class="row">
