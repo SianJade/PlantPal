@@ -24,6 +24,16 @@ h2 {
     font-size: 1.2rem;
 }
 
+.nav-link:hover,
+.navbar-brand:hover {
+    color: #fdec6e;
+    text-shadow: 0px 0px 25px #fdec6e;
+    transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+}
+
 .headings-and-search {
     text-align: center;
 }
@@ -38,11 +48,6 @@ h2 {
     margin: 0;
 }
 
-.add-plant-input,
-.edit-plant-input,
-.home-search {
-    text-transform: lowercase;
-}
 
 .bg-img {
     background-image: url('/static/assets/background-lg.jpg');
@@ -53,6 +58,17 @@ h2 {
     background-repeat: no-repeat;
     padding: 0;
     margin: 0;
+}
+
+.add-plant-input,
+.edit-plant-input,
+.home-search {
+    text-transform: lowercase;
+}
+
+label {
+    font-weight: bold;
+    text-shadow: 1px 2px #fff;
 }
 
 /* ------------ MEDIA QUERIES ----------- */
