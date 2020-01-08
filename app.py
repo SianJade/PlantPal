@@ -1,5 +1,5 @@
 import os
-# import env
+import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
@@ -20,8 +20,6 @@ mongo = PyMongo(app)
 
 """ App routes """
 @app.route('/')
-
-
 @app.route('/index')
 def home():
     """App route for index.html/home page"""
@@ -49,8 +47,7 @@ def add_plant():
             else:
                 """ If the plant does not already exist in the databse, allow the plant info to be saved to the database """
                 form["created_at"] = datetime.datetime.now()
-                form["created_by"] = [session['username']]
-                form["updated_at"] = datetime.datetime.now()
+                form["created_by"] = session['username']
                 plant_id = mongo.db.plants.insert_one(form)
                 plant = mongo.db.plants.find_one({"_id" : ObjectId(plant_id.inserted_id)})
                 """ Once plant has been successfully added to databse, redirect user to page for newly created plant """
@@ -101,8 +98,7 @@ def update_plant(plant_id):
         'water_frequency': request.form.get('water_frequency'),
         'soil_type': request.form.get('soil_type'),
         'additional_notes': request.form.get('additional_notes'),
-        'plant_image': request.form.get('plant_image'),
-        'updated_at': datetime.datetime.now()
+        'plant_image': request.form.get('plant_image')
     })
     """ Once updated, redirect user to the updated plant's info page """
     return redirect(url_for('view_plant', plant_id=plant_id))
@@ -182,7 +178,7 @@ def create_account():
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET'])
 def login():
     """ 
     Check if the username is already in the session and redirect them to their profile if so
@@ -208,6 +204,7 @@ def authentication():
     if user_in_db:
         if check_password_hash(user_in_db['password'], form['password']):
             session['username'] = form['username']
+            session['user_id'] = str(user_in_db['_id'])
             return redirect(url_for('profile', user_id=user_in_db['_id']))
         else:
             flash(u'Wrong username or password', 'wrong')
