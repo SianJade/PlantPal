@@ -30,7 +30,7 @@ def home():
 
 @app.route('/plants')
 def view_plants():
-    """ View all individual plants in the database """
+    """ View alphabetical list of each individual plant in the database """
     return render_template('plants.html', plants=mongo.db.plants.find().sort('latin_name', pymongo.ASCENDING))
 
 
@@ -53,6 +53,7 @@ def add_plant():
                 form["updated_at"] = datetime.datetime.now()
                 plant_id = mongo.db.plants.insert_one(form)
                 plant = mongo.db.plants.find_one({"_id" : ObjectId(plant_id.inserted_id)})
+                """ Once plant has been successfully added to databse, redirect user to page for newly created plant """
                 return render_template('plant.html', plant=plant)
         return render_template("add_plant.html")
     else:
@@ -101,14 +102,10 @@ def update_plant(plant_id):
         'soil_type': request.form.get('soil_type'),
         'additional_notes': request.form.get('additional_notes'),
         'plant_image': request.form.get('plant_image'),
-        'updated_at': datetime.datetime.now(),
-        'created_by': request.form.get('created_by')
+        'updated_at': datetime.datetime.now()
     })
+    """ Once updated, redirect user to the updated plant's info page """
     return redirect(url_for('view_plant', plant_id=plant_id))
-
-# def updated_by():
-#     plant = mongo.db.plants.find_one({'_id': ObjectId(plant_id)})
-#     plant["created_by"][0] == session['username']
 
 @app.route('/plants/delete_plant/<plant_id>')
 def delete_plant(plant_id):
@@ -131,7 +128,7 @@ def delete_plant(plant_id):
 @app.route('/plants/genera')
 def genera():
     """
-    Browse all plant genera, distinct() is used to ensure each genus is only
+    Browse alphabetical list of all plant genera, distinct() is used to ensure each genus is only
     listed on the page once, otherwise multiple of the same genus name are displayed
     if there is more than one plant of that genus in the database 
     """
