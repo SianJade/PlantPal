@@ -101,9 +101,17 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 - After the function to only show logged in users the 'My profile' and 'Logout' nav links had been implemented, I discovered that after a new user account had been created and the user had been redirected to their newly created profile page, the 'Login' nav link was still visible instead of the 'my profile' and 'logout' links being shown as intended. This was due to the fact that in the `create_account()` function, there was no code to add the new user to the session after the line ofcode to insert the new user into the database. Once the appropriate code was added to add the new user to the sessionn, the appropriate nav links appeared in the nav bar.
 
+- The application has been tested across different web browsers and screens of all sizes, including iPhone (and Safari), Moto G5 (on Google Chrome and Opera), Samsung Galaxy tablet (and its inbuilt internet app,as well as Google Chrome), Amazon Kindle (using the Amazon Silk web browser), as well as on larger devices and on broswers such as Microsoft Edge, Firefox, and Internet Explorer. The site works well across all devices and all functionality workds as intended. The only notable issue is the on some smaller devices, some of the submit buttons are not centered as intended.
+
+- Index.html page has a small white strip at the bottom across all devices, however this does not appear on any other page.
+
 
 ## Deployment
 - The application is hosted via [Heroku](https://plant--pal.herokuapp.com/), with the source code being available on [GitHub](https://github.com/SianJade/PlantPal), and is deployed from the master branch - this allows the deployed application to automatically update with any new commits that are made to the master branch.
+    - To deploy the dashboard to Heroku, I first had to set up a virtual environment in my code editor to ensure that when I used pip freeze to save my app's requirements to a text file, only the requirements of the project itself were added to the document, and not all of the various requirements and dependencies that come with Cloud9 itself.
+    - I then had to set the config vars manually in Heroku in the application's settings tab - here I had to set various keys and values including the port, the IP, the MongoURI link, and my secret key. The MongoURI and secret key link had to be set manually in the config vars as these were saved locally in my env.py file which (due to it containing my MongoDB username and password in the URI link) were inside my `.gitignore` folder. This meant that Heroku did not have access to them until they were set manually in the config vars.
+    - Then to ensure my Heroku app updated in realtime with my commits to my Github repository, I opened up the 'Deploy' tab inside my PlantPal Heroku dashboard, and connected the Heroku app to my repo and enabled automatic deploys, so that all pushes to the master branch on Github would also be pushed to Heroku, meaning I did not have to also push to Heroku manually.
+    - Finally, to ensure the app would open successfully in Heroku, I had to remove the line `import env` from the top of my app.py code, as Heroku does not have access to this with it being in my `.gitignore` folder, and so could not successfully deploy whilst this line was still included as it could not import the module, heance the config vars.
 
     
 - To run this application locally:
@@ -122,6 +130,8 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 - Information for each plant's genus, family, and order has been taken from the plant's [Wikipedia](https://en.wikipedia.org/wiki/Wiki) page for the purpose of populating the database.
 
+- The font used for the navbar brand, links, and headers can be found on [GoogleFonts](https://fonts.google.com/specimen/Great+Vibes).
+
 ### Media
 
-- Images of each of the plants have been taken from [GoogleImages](https://images.google.co.uk/)
+- Images of each of the plants have been taken from [GoogleImages](https://images.google.co.uk/), as have the background images for all pages on all devices.
