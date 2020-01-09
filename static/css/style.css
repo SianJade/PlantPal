@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes&display=swap');
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
 h1,
 h2 {
     font-family: 'Great Vibes', cursive;
@@ -24,6 +37,7 @@ h2 {
     font-size: 1.2rem;
 }
 
+.navbar-dark>a:hover,
 .nav-link:hover,
 .navbar-brand:hover {
     color: #fdec6e;
@@ -56,6 +70,7 @@ h2 {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: scroll;
     padding: 0;
     margin: 0;
 }
