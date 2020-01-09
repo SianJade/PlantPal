@@ -1,5 +1,5 @@
 import os
-import env
+# import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
@@ -32,6 +32,13 @@ def view_plants():
     return render_template('plants.html', plants=mongo.db.plants.find().sort('latin_name', pymongo.ASCENDING))
 
 
+@app.route('/plants/<plant_id>', methods=['GET'])
+def view_plant(plant_id):
+    """ View one specific plant from the databse and all its details """
+    plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+    return render_template('plant.html', plant=plant)
+
+
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
     """ Check if the user is logged in """
@@ -56,13 +63,6 @@ def add_plant():
         """ If the user is not logged in, redirect them to the login page """
         flash(u'You must be logged in', 'login')
         return render_template('login.html')
-
-
-@app.route('/plants/<plant_id>', methods=['GET'])
-def view_plant(plant_id):
-    """ View one specific plant from the databse and all its details """
-    plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
-    return render_template('plant.html', plant=plant)
 
 
 @app.route('/plants/edit/<plant_id>')
@@ -139,7 +139,6 @@ def genus(genus_name):
     return render_template('genus.html', plants=mongo.db.plants.find({"genus": genus_name}), genus_name=genus_name)
     
 
-
 @app.route('/get_search', methods=['POST'])
 def get_search():
     """ 
@@ -176,47 +175,7 @@ def create_account():
             session['user_id'] = str(user_id.inserted_id)
             return render_template('user.html', user=user)
     return render_template('create_account.html')
-
-
-@app.route('/user/edit/<user_id>')
-def edit_user(user_id):
-    """
-    Allows a user to edit their profile
-    """
-    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-    return render_template('edit_account.html', user=user)
-
-
-@app.route('/user/update_user/<user_id>', methods=["POST"])
-def update_user(user_id):
-    """
-    Update the details of a user, the form is pre-filled with the all of the details for the
-    user as they are currently stored in the database. 
-    """
-    user = mongo.db.users
-    user.update({'_id': ObjectId(user_id)},
-    {
-        'first_name': request.form.get('first_name'),
-        'last_name': request.form.get('last_name'),
-        'email': request.form.get('email'),
-        'username': request.form.get('username'),
-        'password': request.form.get('password')
-    })
-    """ Once updated, redirect user to the updated user's profile page """
-    return redirect(url_for('profile', user_id=user_id))
-
-
-@app.route('/user/delete_user/<user_id>')
-def delete_account(user_id):
-    """
-    Allow the user to delete their profile
-    """
-    mongo.db.users.find_one({'_id': ObjectId(user_id)})
-    mongo.db.users.remove({'_id': ObjectId(user_id)})
-    session.clear()
-    flash(u'Account deleted successfully', 'account_deleted')
-    return redirect(url_for('home'))
-
+    
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -253,10 +212,50 @@ def authentication():
         flash(u'An account does not exist for this username', 'user_does_not_exist') 
         return redirect(url_for('login'))
 
+
 @app.route('/user/<user_id>', methods=['GET'])
 def profile(user_id):
     """ Allows the user to see their profile details """
     return render_template('user.html', user=mongo.db.users.find_one({"_id": ObjectId(user_id)}), user_id=user_id)
+    
+
+@app.route('/user/edit/<user_id>')
+def edit_user(user_id):
+    """
+    Allows a user to edit their profile
+    """
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    return render_template('edit_account.html', user=user)
+
+
+@app.route('/user/update_user/<user_id>', methods=["POST"])
+def update_user(user_id):
+    """
+    Update the details of a user, the form is pre-filled with the all of the details for the
+    user as they are currently stored in the database. 
+    """
+    user = mongo.db.users
+    user.update({'_id': ObjectId(user_id)},
+    {
+        'first_name': request.form.get('first_name'),
+        'last_name': request.form.get('last_name'),
+        'email': request.form.get('email'),
+        'password': request.form.get('password')
+    })
+    """ Once updated, redirect user to the updated user's profile page """
+    return redirect(url_for('profile', user_id=user_id))
+
+
+@app.route('/user/delete_user/<user_id>')
+def delete_account(user_id):
+    """
+    Allow the user to delete their profile
+    """
+    mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    mongo.db.users.remove({'_id': ObjectId(user_id)})
+    session.clear()
+    flash(u'Account deleted successfully', 'account_deleted')
+    return redirect(url_for('home'))
 
 
 @app.route('/logout')
