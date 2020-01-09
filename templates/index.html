@@ -11,6 +11,16 @@
         </ul>
     </div>
     {% endif %} {% endwith %}
+    {% with errors = get_flashed_messages(category_filter=["account_deleted"]) %} {% if errors %}
+    <div class="alert alert-success col-xl-4 offset-xl-4 alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <ul>
+            {%- for msg in errors %}
+            <p>{{ msg }}</p>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %} {% endwith %}
     <div class="headings-and-search">
         <p class="landing-header offset-xl-6">
             Plant Pal
