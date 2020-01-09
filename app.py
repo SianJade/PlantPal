@@ -1,5 +1,5 @@
 import os
-# import env
+import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
@@ -35,7 +35,7 @@ def view_plants():
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
     """ Check if the user is logged in """
-    if 'username' in session:
+    if 'user_id' in session:
         """ If they are, they may add a new plant to the database """
         if request.method=='POST':
             form = request.form.to_dict()
