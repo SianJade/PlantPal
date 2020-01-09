@@ -198,7 +198,6 @@ def update_user(user_id):
         'first_name': request.form.get('first_name'),
         'last_name': request.form.get('last_name'),
         'email': request.form.get('email'),
-        'username': request.form.get('username'),
         'password': request.form.get('password')
     })
     """ Once updated, redirect user to the updated user's profile page """
