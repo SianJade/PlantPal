@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid bg-img">
+  <br>
+  <h1>Edit Account</h1>
+
+  <div class="row">
+    <h6 class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2"></h6>
+  </div>
+
+  <form action="{{url_for('create_account')}}" method="POST" onSubmit = "return checkPassword(this)">
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="first_name">First Name:</label>
+        <input id="first_name" name="first_name" type="text" class="form-control" value="{{user.first_name}}" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="last_name">Last Name:</label>
+        <input id="last_name" name="last_name" type="text" class="form-control" value="{{user.last_name}}" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" class="form-control" value="{{user.email}}" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="username">Username:</label>
+        <input id="username" name="username" type="text" class="form-control" value="{{user.username}}" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="hashed_pwd">Password:</label>
+        <input id="hashed_pwd" name="password1" type="password" class="form-control" value="{{user.password}}" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+        <label for="reenter_password">Re-enter password to confirm:</label>
+        <input name="password2" type="password" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-success offset-xl-5 offset-lg-5" type="submit">Update Details</button>
+    </div>
+  </form>
+</div>
+
+
+<script type="text/javascript">
+  // Function to check if passwords match 
+  function checkPassword(form) {
+    password1 = form.password1.value;
+    password2 = form.password2.value;
+
+    // If they don't match, return False     
+    if (password1 != password2) {
+      alert("\nPassword did not match: Please try again...")
+      return false;
+    }
+
+    // If same return True and allow the user to continue 
+    else {
+      return true;
+    }
+  } 
+  </script>
+
+{% endblock %}
