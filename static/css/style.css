@@ -19,6 +19,7 @@ body {
     font-family: 'Great Vibes', cursive;
 }
 
+h1,
 h2 {
     font-family: 'Great Vibes', cursive;
     font-weight: bolder;
@@ -122,6 +123,10 @@ label {
     .bg-img {
         background-image: url('/static/assets/background-sm.jpg');
         height: 100%;
+    }
+    
+    .home-search {
+        width: 75%;
     }
 }
 
