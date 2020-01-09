@@ -8,7 +8,7 @@
     <h6 class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2"></h6>
   </div>
 
-  <form action="{{url_for('update_user', user_id=user._id)}}}}" method="POST" onSubmit = "return checkPassword(this)">
+  <form action="{{url_for('update_user', user_id=user._id)}}" method="POST" onSubmit = "return checkPassword(this)">
     <div class="row">
       <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
         <label for="first_name">First Name:</label>
