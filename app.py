@@ -1,5 +1,4 @@
 import os
-# import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
