@@ -102,6 +102,7 @@ def update_plant(plant_id):
     """ Once updated, redirect user to the updated plant's info page """
     return redirect(url_for('view_plant', plant_id=plant_id))
 
+
 @app.route('/plants/delete_plant/<plant_id>')
 def delete_plant(plant_id):
     """ Check if the user is logged in """
@@ -179,15 +180,9 @@ def create_account():
 
 @app.route('/user/edit/<user_id>')
 def edit_user(user_id):
-    """ Check if the user is logged in """
-    if 'username' in session:
-        """ If they are, allow the user to edit account details """
-        user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        return render_template('edit_account.html', user=user)
-    else:
-        """ If the user is not logged in, redirect them to the login page """
-        flash(u'You must be logged in', 'login')
-        return render_template('login.html')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    return render_template('edit_account.html', user=user)
+
 
 @app.route('/user/update_user/<user_id>', methods=["POST"])
 def update_user(user_id):
@@ -205,7 +200,7 @@ def update_user(user_id):
         'password': request.form.get('password')
     })
     """ Once updated, redirect user to the updated plant's info page """
-    return redirect(url_for('view_user', user_id=user_id))
+    return redirect(url_for('profile', user_id=user_id))
 
 
 @app.route('/user/delete_user/<user_id>')
