@@ -116,6 +116,7 @@ label {
 
     .bg-img {
         background-image: url('/static/assets/background-sm.jpg');
+        height: 100%;
     }
 }
 
@@ -139,6 +140,7 @@ label {
 
     .bg-img {
         background-image: url('/static/assets/background-med.jpg');
+        height: 100%;
     }
 
 }
