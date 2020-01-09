@@ -14,16 +14,16 @@ A live desktop demo can be found [here](https://plant--pal.herokuapp.com/). The 
 ## User stories
 
 ### User story 1:
-As a newcomer to the keeping houseplants, I would like to be able to search houseplants by their name so that I can find out what the most appropriate care for each of my plants would be.
+As a newcomer to the keeping houseplants, I would like to be able to search houseplants by their common names so that I can find out what the most appropriate care for each of my plants would be.
 
 ### User story 2:
-As a plant enthusiast, I would like to be able to browse plants by genus so that I can discover more species of plants that belong to a particular family/genus that I am fond of.
+As a plant enthusiast, I would like to be able to browse plants by genus so that I can discover more species of plants that belong to a particular genus that I am fond of.
 
 ### User story 3:
-As a Biology student, I would like to be able to find out information about different orders and genus of plants for my school project on plant types.
+As a Biology student, I would like to be able to find out information about different orders and families of plants for my school project on plant types.
 
 ### User story 4:
-As a house plant enthusiast, I would like to be able to browse various plants by their preferred lighting conditions so that I can ascertain which plants will thrive in different areas of my home that have different lighting availabilty.
+As a house plant enthusiast, I would like to be able to search for various plants by their preferred lighting conditions so that I can ascertain which plants will thrive in different areas of my home that have different lighting availabilty.
 
 
 ## Features
@@ -42,12 +42,20 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 
 - As MongoDB cannot store image files, images are instead uploaded to the database as a string via a text input. Below the this input field are instructions on how to upload their chosen image to the database - the user must click the anchor text, where a new tab will open using `target="_blank"` and take the user to image sharing site [PostImages](https://postimages.org/) where they can upload their chosen plant image, and then (as instructed on the Add Plant page) copy the direct link to the image and paste this into the plant image input. This image is then displayed at the top of the plant's information page once it has been submitted to the database. For user convenience, I opted to find an image sharing site that did not require the user to first create an account before they were able to upload an image and retrieve the required link, as I felt this would not be best UX pratice in terms of convenience for the user. Whilst hotlinking is also not best UX practice, because of the constraints of MongoDB's available field types, this was the most suitable option for image hosting in this particular project.
 
+- For the sake of good UX and design pratices, I opted to hide the 'My profile' and 'Logout' nav links using Jinja if statements if the user was not logged into their account, as these links would not be necessary for non-logged in users. Conversely, once the user has logged into their account, Jinja if statements are used to hide the 'Login' nav link and display the 'My profile' and 'Logout' nav links.
+
+- Whilst I opted to hide the 'My profile' and 'Logout' nav links to non-logged in users, I decided to keep the 'Add plant' nav link visible to all users - logged in or otherwise - despite the user needing to be logged in to add a plant to the databse. I chose to do this so that new visitors to the app can esily be made aware that as well as viewing information about various plants, they can also add information about plants to the databse themselves. I felt this may not otherwise be clear to newcomers to the application if the nav link was hidden until logged in. As the user needs to be logged in, though, the 'Add plant' nav link redirects to the login page when clicked if the user is not already logged in.
+
+- The application features if/else statements to ensure that the user cannot create an account with a username that already exists in the database, or add a new plant whose latin name already exists in the database in order to prevent suplicate entries. Checks to ensure the username and password entered on the login page a- exist in the databse, and b- that the inputted username and password match, if they do then the user is allowed to login, if not, a Flask flashed message appears informing the user of their error.
+
 
 ### Features Left to Implement
 
 - In future versions of the app, I would like to add functionality for users to upload a photograph of a plant which they may not know the name of, so that the app can search through the existing plants in the database and then redirect them to that particular plant's page within the app should a page with information about that particular plant exist.
 
 - I would also like to implement functionality for the user to upload a photograph of a particular location where they would like to keep a plant, then based on the lighting conditions shown in the photograph, recommend which types of plants may be well suited to the particular location.
+
+- In future releases I would like to implement CAPTCHA on the login page of the app to ensure that the user attempting to login is human.
 
 
 ## Technologies Used
@@ -61,14 +69,17 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 - [Bootstrap (ver 4.3.1)](https://getbootstrap.com/)
     - The project uses the Bootstrap 4 grid and components in order to achieve a responsive layout and styling.
 
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+    - This project uses some Javascript in order to ensure that a user's passwords match when creating an account.
+
 - [Python (ver 3.0)](https://www.python.org/download/releases/3.0/)
     - The project uses Python in order to wire up the database to the front end, as well as to implement relevant functions for the nature of the application.
 
 - [Flask (ver 1.1.1)](http://flask.palletsprojects.com/en/1.1.x/)
-    - The project uses the micro-framework Flask as the base of the application.
+    - The project uses the micro-framework Flask as the base of the application, as well as many of its inbuilt functions.
 
 - [Jinja (ver 2.10)](https://jinja.palletsprojects.com/en/2.10.x/)
-    - The project uses the Jinja templating langauge in order to extend the base HTML and prevent unnecessary repetition of HTML code, allowing existing code to be reused where possible.
+    - The project uses the Jinja templating langauge in order to extend the base HTML and prevent unnecessary repetition of HTML code, allowing existing code to be reused where possible, as well as to implement for statements inside the HTML documents to display returned results from app.py functions, and if statements to show and hide certain information depending on whether or not a user is logged in.
 
 - [MongoDB (ver 4.2.0)](https://www.mongodb.com/)
     - The project uses MongoDB to host and store the databases required for the project.
@@ -79,6 +90,16 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 - HTML code has been run through the [W3C Markup Validator](https://validator.w3.org/) and corrected accordingly.
 
 - CSS code has been validated via the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and returned no errors.
+
+- Once the functionality for a user to edit their account details was in place, I discovered that the user was able to change their userame to that of another user in the database when updating their details - this would have affected the login process as the details used to log in to the application are the username and password, so if multiple of the same username existed in the database who would each have different passwords as the accounts belong to different users, this would prevent the users who have the same username as one another from logging into their accounts. To prevent this, I opted to disable to username field on the edit account page, so that the user is not at risk of taking another user's username.
+
+- The `genera()` function was initially returning multiple of the same genus name if there was more than one plant with that particular genus in the databse, however each genus only needed to be listed once, so that the user could select a genus and view all plants within it. To overcome this issue, the function makes use of the MongoDB collection method `distinct` in order to ensure that each plant genus is only listed once on the All Genera page.
+
+- Whilst `sort('latin_name', pymongo.ASCENDING)` worked fine to display the individual plants in alphabetical order on the view all plants page, I discovered that the same method could not be used to alphabetise the genus names retrieved in the `genera()` function - this is due to the use of the MongoDB collection method `distinct` - these two methods cannot work in conjunction with one another. In order to resolve this, the Python `sort()` method was used on the list of returned genera to order them alphabetically as required for easier user browsing.
+
+- When updating a plant's information, I discovered that although the plant photo input field was pre-filled with the existing value of the plant photo field in the database as required, upon submitting the updated plant details, the plant photo link string would vanish from the database. Upon investigation, I discovered that this was because I had not added `'plant_image': request.form.get('plant_image')` to the `update_plant()` function in my app.py file after I had initially figured out how to submit a plant photo to the databse in the add plant form, as this functionality had been added after the rest of the `update_plant()` function was already in place.
+
+- After the function to only show logged in users the 'My profile' and 'Logout' nav links had been implemented, I discovered that after a new user account had been created and the user had been redirected to their newly created profile page, the 'Login' nav link was still visible instead of the 'my profile' and 'logout' links being shown as intended. This was due to the fact that in the `create_account()` function, there was no code to add the new user to the session after the line ofcode to insert the new user into the database. Once the appropriate code was added to add the new user to the sessionn, the appropriate nav links appeared in the nav bar.
 
 
 ## Deployment
@@ -95,10 +116,12 @@ As a house plant enthusiast, I would like to be able to browse various plants by
 
 - The code used to facilitate flashed messages has been adapted from code found at [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/).
 
+- The Javascript code used to ensure that the user has entered two matching passwords when creating their account has been adapted from code found at [GeeksForGeeks](https://www.geeksforgeeks.org/password-matching-using-javascript/).
+
 ### Content
 
--
+- Information for each plant's genus, family, and order has been taken from the plant's [Wikipedia](https://en.wikipedia.org/wiki/Wiki) page for the purpose of populating the database.
 
 ### Media
 
--
+- Images of each of the plants have been taken from [GoogleImages](https://images.google.co.uk/)
