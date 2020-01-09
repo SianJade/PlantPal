@@ -105,6 +105,7 @@ label {
         background-color: rgba(0, 102, 0, 0.5);
         width: 40%;
         float: right;
+        z-index: 1;
     }
 
     .jumbotron {
