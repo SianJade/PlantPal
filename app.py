@@ -180,6 +180,9 @@ def create_account():
 
 @app.route('/user/edit/<user_id>')
 def edit_user(user_id):
+    """
+    Allows a user to edit their profile
+    """
     user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     return render_template('edit_account.html', user=user)
 
@@ -187,8 +190,8 @@ def edit_user(user_id):
 @app.route('/user/update_user/<user_id>', methods=["POST"])
 def update_user(user_id):
     """
-    Update the details of a plant, the form is pre-filled with the all of the details for the
-    plant as it is currently stored in the database. 
+    Update the details of a user, the form is pre-filled with the all of the details for the
+    user as they are currently stored in the database. 
     """
     user = mongo.db.users
     user.update({'_id': ObjectId(user_id)},
@@ -199,12 +202,15 @@ def update_user(user_id):
         'username': request.form.get('username'),
         'password': request.form.get('password')
     })
-    """ Once updated, redirect user to the updated plant's info page """
+    """ Once updated, redirect user to the updated user's profile page """
     return redirect(url_for('profile', user_id=user_id))
 
 
 @app.route('/user/delete_user/<user_id>')
 def delete_account(user_id):
+    """
+    Allow the user to delete their profile
+    """
     mongo.db.users.find_one({'_id': ObjectId(user_id)})
     mongo.db.users.remove({'_id': ObjectId(user_id)})
     session.clear()
