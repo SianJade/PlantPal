@@ -61,7 +61,8 @@ h2 {
 .jumbotron {
     background-image: url('/static/assets/landing.png');
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
@@ -124,7 +125,7 @@ p {
 
 
     p {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
         font-weight: bold;
         text-shadow: 1px 1px #fff;
     }
@@ -132,11 +133,17 @@ p {
     .bg-img {
         background-image: url('/static/assets/background-sm.jpg');
         height: 100%;
+        background-repeat: repeat-y;
     }
 
     .home-search {
         width: 75%;
         margin: 0 auto;
+    }
+
+    button {
+        padding: 0 10px;
+        display: inline-block;
     }
 }
 
@@ -165,11 +172,14 @@ p {
 
     p {
         font-size: 1rem;
+        font-weight: bold;
+        text-shadow: 1px 1px #fff;
     }
 
     .bg-img {
         background-image: url('/static/assets/background-med.jpg');
         height: 100%;
+        background-repeat: repeat-y;
     }
 
 }
