@@ -90,9 +90,19 @@ h2 {
     text-transform: lowercase;
 }
 
+h1 {
+    text-shadow: 1px 2px #fff;
+}
+
 label {
     font-weight: bold;
     text-shadow: 1px 2px #fff;
+}
+
+h1,
+h6,
+p {
+    text-align: center;
 }
 
 /* ------------ MEDIA QUERIES ----------- */
@@ -124,9 +134,10 @@ label {
         background-image: url('/static/assets/background-sm.jpg');
         height: 100%;
     }
-    
+
     .home-search {
         width: 75%;
+        margin: 0 auto;
     }
 }
 
@@ -148,6 +159,10 @@ label {
         background-size: 100vw 100vh;
     }
 
+    .home-search {
+        width: 50%;
+        margin: 0 auto;
+    }
 
     p {
         font-size: 1rem;
