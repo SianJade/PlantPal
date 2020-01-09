@@ -32,13 +32,6 @@ def view_plants():
     return render_template('plants.html', plants=mongo.db.plants.find().sort('latin_name', pymongo.ASCENDING))
 
 
-@app.route('/plants/<plant_id>', methods=['GET'])
-def view_plant(plant_id):
-    """ View one specific plant from the databse and all its details """
-    plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
-    return render_template('plant.html', plant=plant)
-
-
 @app.route('/plant/new', methods=['GET', 'POST'])
 def add_plant():
     """ Check if the user is logged in """
@@ -63,6 +56,13 @@ def add_plant():
         """ If the user is not logged in, redirect them to the login page """
         flash(u'You must be logged in', 'login')
         return render_template('login.html')
+
+
+@app.route('/plants/<plant_id>', methods=['GET'])
+def view_plant(plant_id):
+    """ View one specific plant from the databse and all its details """
+    plant=mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+    return render_template('plant.html', plant=plant)
 
 
 @app.route('/plants/edit/<plant_id>')
@@ -139,6 +139,7 @@ def genus(genus_name):
     return render_template('genus.html', plants=mongo.db.plants.find({"genus": genus_name}), genus_name=genus_name)
     
 
+
 @app.route('/get_search', methods=['POST'])
 def get_search():
     """ 
@@ -175,49 +176,7 @@ def create_account():
             session['user_id'] = str(user_id.inserted_id)
             return render_template('user.html', user=user)
     return render_template('create_account.html')
-    
 
-@app.route('/login', methods=['GET'])
-def login():
-    """ 
-    Check if the username is already in the session and redirect them to their profile if so
-    If the user is not in the session, redirect them to the login page
-    """
-    return render_template("login.html")
-
-
-@app.route('/authentication', methods=['POST'])
-def authentication():
-    """ 
-    Authenticate username and password by checking the inputted username matches 
-    the inputted username stored in the users collection of the db, and that the 
-    inputted password matches the password stored in the db, and then that the 
-    password is the correct password for the inputted username. If the username
-    and password do not match or are incorrect, then the user will see a message 
-    informing them of this and the login page will refresh. If the inputted username
-    does not exist in the database at all, the user will see a message informing
-    them that an account does not exist for the user
-    """
-    form = request.form.to_dict()
-    user_in_db = mongo.db.users.find_one({'username': form['username']})
-    if user_in_db:
-        if check_password_hash(user_in_db['password'], form['password']):
-            session['username'] = form['username']
-            session['user_id'] = str(user_in_db['_id'])
-            return redirect(url_for('profile', user_id=user_in_db['_id']))
-        else:
-            flash(u'Wrong username or password', 'wrong')
-            return redirect(url_for('login'))
-    else:
-        flash(u'An account does not exist for this username', 'user_does_not_exist') 
-        return redirect(url_for('login'))
-
-
-@app.route('/user/<user_id>', methods=['GET'])
-def profile(user_id):
-    """ Allows the user to see their profile details """
-    return render_template('user.html', user=mongo.db.users.find_one({"_id": ObjectId(user_id)}), user_id=user_id)
-    
 
 @app.route('/user/edit/<user_id>')
 def edit_user(user_id):
@@ -256,6 +215,47 @@ def delete_account(user_id):
     session.clear()
     flash(u'Account deleted successfully', 'account_deleted')
     return redirect(url_for('home'))
+
+
+@app.route('/login', methods=['GET'])
+def login():
+    """ 
+    Check if the username is already in the session and redirect them to their profile if so
+    If the user is not in the session, redirect them to the login page
+    """
+    return render_template("login.html")
+
+
+@app.route('/authentication', methods=['POST'])
+def authentication():
+    """ 
+    Authenticate username and password by checking the inputted username matches 
+    the inputted username stored in the users collection of the db, and that the 
+    inputted password matches the password stored in the db, and then that the 
+    password is the correct password for the inputted username. If the username
+    and password do not match or are incorrect, then the user will see a message 
+    informing them of this and the login page will refresh. If the inputted username
+    does not exist in the database at all, the user will see a message informing
+    them that an account does not exist for the user
+    """
+    form = request.form.to_dict()
+    user_in_db = mongo.db.users.find_one({'username': form['username']})
+    if user_in_db:
+        if check_password_hash(user_in_db['password'], form['password']):
+            session['username'] = form['username']
+            session['user_id'] = str(user_in_db['_id'])
+            return redirect(url_for('profile', user_id=user_in_db['_id']))
+        else:
+            flash(u'Wrong username or password', 'wrong')
+            return redirect(url_for('login'))
+    else:
+        flash(u'An account does not exist for this username', 'user_does_not_exist') 
+        return redirect(url_for('login'))
+
+@app.route('/user/<user_id>', methods=['GET'])
+def profile(user_id):
+    """ Allows the user to see their profile details """
+    return render_template('user.html', user=mongo.db.users.find_one({"_id": ObjectId(user_id)}), user_id=user_id)
 
 
 @app.route('/logout')
