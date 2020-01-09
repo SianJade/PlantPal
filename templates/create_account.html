@@ -69,19 +69,18 @@
 
 
 <script type="text/javascript">
-  // Function to check Whether both passwords 
-  // is same or not. 
+  // Function to check if passwords match 
   function checkPassword(form) {
     password1 = form.password1.value;
     password2 = form.password2.value;
 
-    // If Not same return False.     
+    // If they don't match, return False     
     if (password1 != password2) {
       alert("\nPassword did not match: Please try again...")
       return false;
     }
 
-    // If same return True. 
+    // If same return True and allow the user to continue 
     else {
       return true;
     }
