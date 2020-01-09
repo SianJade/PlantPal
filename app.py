@@ -1,5 +1,5 @@
 import os
-# import env
+import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
@@ -46,7 +46,6 @@ def add_plant():
                 flash(u'A page already exists for this plant', 'plant_exists')
             else:
                 """ If the plant does not already exist in the databse, allow the plant info to be saved to the database """
-                form["created_at"] = datetime.datetime.now()
                 form["created_by"] = session['username']
                 plant_id = mongo.db.plants.insert_one(form)
                 plant = mongo.db.plants.find_one({"_id" : ObjectId(plant_id.inserted_id)})
@@ -164,7 +163,7 @@ def create_account():
         if user_in_db:
             flash(u'An account already exists for this username - please pick a new username', 'username_exists')
         else:
-            user_password = generate_password_hash(form['password'])
+            user_password = generate_password_hash(form['password1'])
             user_id = mongo.db.users.insert_one({
                 'first_name': form['first_name'],
                 'last_name': form['last_name'],
@@ -173,6 +172,7 @@ def create_account():
                 'password': user_password
             })
             user = mongo.db.users.find_one({"_id" : ObjectId(user_id.inserted_id)})
+            session['user_id'] = str(user_id.inserted_id)
             return render_template('user.html', user=user)
     return render_template('create_account.html')
 
