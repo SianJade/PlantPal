@@ -1,5 +1,5 @@
 import os
-# import env
+import env
 import datetime
 from flask import Flask, render_template, redirect, request, url_for, session, escape, flash
 from flask_pymongo import PyMongo
@@ -176,6 +176,45 @@ def create_account():
             return render_template('user.html', user=user)
     return render_template('create_account.html')
 
+
+@app.route('/user/edit/<user_id>')
+def edit_user(user_id):
+    """ Check if the user is logged in """
+    if 'username' in session:
+        """ If they are, allow the user to edit account details """
+        user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+        return render_template('edit_account.html', user=user)
+    else:
+        """ If the user is not logged in, redirect them to the login page """
+        flash(u'You must be logged in', 'login')
+        return render_template('login.html')
+
+@app.route('/user/update_user/<user_id>', methods=["POST"])
+def update_user(user_id):
+    """
+    Update the details of a plant, the form is pre-filled with the all of the details for the
+    plant as it is currently stored in the database. 
+    """
+    user = mongo.db.users
+    user.update({'_id': ObjectId(user_id)},
+    {
+        'first_name': request.form.get('first_name'),
+        'last_name': request.form.get('last_name'),
+        'email': request.form.get('email'),
+        'username': request.form.get('username'),
+        'password': request.form.get('password')
+    })
+    """ Once updated, redirect user to the updated plant's info page """
+    return redirect(url_for('view_user', user_id=user_id))
+
+
+@app.route('/user/delete_user/<user_id>')
+def delete_account(user_id):
+    mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    mongo.db.users.remove({'_id': ObjectId(user_id)})
+    session.clear()
+    flash(u'Account deleted successfully', 'account_deleted')
+    return redirect(url_for('home'))
 
 
 @app.route('/login', methods=['GET'])
