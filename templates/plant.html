@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container-fluid bg-img">
     <br>
-    <h1 class="offset-xl-4 offset-lg-4">{{plant.latin_name}} - {{plant.common_name}}</h1>
+    <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
     <br> {% with errors = get_flashed_messages(category_filter=["delete"]) %} {% if errors %}
     <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>

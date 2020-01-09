@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container-fluid bg-img">
     <br>
-    <h1 class="offset-xl-5 offset-lg-5">Login</h1>
+    <h1>Login</h1>
 
     <div class="row">
-        <h6 class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">Don't have an account? <a href="{{url_for('create_account')}}">Create one here</a></h6>
+        <p class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2 no-account">Don't have an account? <a href="{{url_for('create_account')}}">Create one here</a></p>
     </div>
 
     <br> {% with errors = get_flashed_messages(category_filter=["login"]) %} {% if errors %}
