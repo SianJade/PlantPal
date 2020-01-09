@@ -177,33 +177,6 @@ def create_account():
     return render_template('create_account.html')
 
 
-@app.route('/user/edit/<user_id>')
-def edit_user(user_id):
-    """
-    Allows a user to edit their profile
-    """
-    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-    return render_template('edit_account.html', user=user)
-
-
-@app.route('/user/update_user/<user_id>', methods=["POST"])
-def update_user(user_id):
-    """
-    Update the details of a user, the form is pre-filled with the all of the details for the
-    user as they are currently stored in the database. 
-    """
-    user = mongo.db.users
-    user.update({'_id': ObjectId(user_id)},
-    {
-        'first_name': request.form.get('first_name'),
-        'last_name': request.form.get('last_name'),
-        'email': request.form.get('email'),
-        'password': request.form.get('password')
-    })
-    """ Once updated, redirect user to the updated user's profile page """
-    return redirect(url_for('profile', user_id=user_id))
-
-
 @app.route('/user/delete_user/<user_id>')
 def delete_account(user_id):
     """
