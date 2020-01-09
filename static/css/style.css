@@ -98,12 +98,12 @@ label {
     .navbar {
         height: 50px;
     }
-    
+
     .navbar-nav>li>a {
-        text-align: right;
+        text-align: center;
         text-shadow: 1px 1px black;
         background-color: rgba(0, 102, 0, 0.5);
-        width: 40%;
+        width: 25%;
         float: right;
         z-index: 1;
     }
