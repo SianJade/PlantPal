@@ -48,6 +48,8 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 - The application features if/else statements to ensure that the user cannot create an account with a username that already exists in the database, or add a new plant whose latin name already exists in the database in order to prevent suplicate entries. Checks to ensure the username and password entered on the login page a- exist in the databse, and b- that the inputted username and password match, if they do then the user is allowed to login, if not, a Flask flashed message appears informing the user of their error.
 
+- Users are able to add plants to the databse and edit a plant's information only if they are logged into their account, and only the initial creator of the plant is able to see the 'delete plant' button to delete the plant entirely if they so wish. Users are also able to delete their own account from the databse should they wish.
+
 
 ### Features Left to Implement
 
@@ -56,6 +58,8 @@ As a house plant enthusiast, I would like to be able to search for various plant
 - I would also like to implement functionality for the user to upload a photograph of a particular location where they would like to keep a plant, then based on the lighting conditions shown in the photograph, recommend which types of plants may be well suited to the particular location.
 
 - In future releases I would like to implement CAPTCHA on the login page of the app to ensure that the user attempting to login is human.
+
+- In future releases I would like to divise a way to allow users to update their profile details, however in the meantime I have had to remove this functionality.
 
 
 ## Technologies Used
@@ -92,6 +96,8 @@ As a house plant enthusiast, I would like to be able to search for various plant
 - CSS code has been validated via the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and returned no errors.
 
 - Once the functionality for a user to edit their account details was in place, I discovered that the user was able to change their userame to that of another user in the database when updating their details - this would have affected the login process as the details used to log in to the application are the username and password, so if multiple of the same username existed in the database who would each have different passwords as the accounts belong to different users, this would prevent the users who have the same username as one another from logging into their accounts. To prevent this, I opted to disable to username field on the edit account page, so that the user is not at risk of taking another user's username.
+
+- After testing the above functionality, I discovered that upon submitting the updated account information, because the username field had been marked as disabled, that the username was removed entirely upon saving to the databse. To resolve this issue I completely removed the username field from the update account page and corresponding function - however this also rendered the username field empty upon form submission. As I do not currently have a solution for this bug, I have opted to temporarily remove the update account function in the short term until I have divised a solution for this issue, as without a username, the user cannot log in to their account at all once they have updated it. The user is still able to delete their account.
 
 - The `genera()` function was initially returning multiple of the same genus name if there was more than one plant with that particular genus in the databse, however each genus only needed to be listed once, so that the user could select a genus and view all plants within it. To overcome this issue, the function makes use of the MongoDB collection method `distinct` in order to ensure that each plant genus is only listed once on the All Genera page.
 
