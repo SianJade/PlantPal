@@ -4,7 +4,11 @@ Stream Three Project: Data-Centric Development - Code Institute
  
 ## UX
 
-The purpose of this project is to collect and display data about various plant species - both house plants and outdoor - in order for users to be able to find out information about a plant they have searched for, or plants within a certain genus or family, as well as to present the user with information aboout best care practices for their plants, such as what their lighting requirements are, how often they require watering, and what kind of soil they will best thrive in. For added visual context, a plant photo is supplied alongside each plant's information.
+The purpose of this project is to serve as an online catalogue of information about various indoor and outdoor plant species from around the world. This includes their scientific classifications such as their Latin names, family, and genus for those who may be interested in plant geneaolgy or who may wish to use this information to find out more about the biology and/or origins of a specific plant, or of a larger genus/family to which that plant belongs.
+
+Alongside the more scientific plant information is information on what best care practices are for a particular plant, as well as which conditions the plant will thrive best in. This information is intended to allow house plant/gardening enthusiasts to ascertain what kind of lighting, soil type, and watering frequency each plant prefers, so that they can look after each of their plants to the best of their ability, since even plants within the same genus or family can require very different care and maintenence, so a site which contains all of this various information for many different plants in one place would come in very handy.
+
+The user is able to search for specific plants by searching for a common name (such as Snake Plant) or Latin name (such as Sansevieria Trifasciata), as well as being able to browse a broader selection of related plants by searching for a particular genus (such as Tradescantia or Sansevieria) or family (such as Asparagaceae). The ability for users to browse plants by whether they are indoor or outdoor plants, as well as their preferred lighting conditions allow for users to perhaps select new plants which they would like to acquire for a certain spot in their house or garden.
 
 Wireframes for the application can be found in the assets folder of the repository.
 
