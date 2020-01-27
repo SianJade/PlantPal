@@ -207,8 +207,9 @@ def create_account():
         form = request.form.to_dict()
         user_in_db = mongo.db.users.find_one({'username': form['username']})
         if user_in_db:
-            flash(u'An account already exists for this username - please pick a new username',
-                    'username_exists')
+            flash(
+                u'An account already exists for this username - please pick a new username',
+                'username_exists')
         else:
             user_password = generate_password_hash(form['password1'])
             user_id = mongo.db.users.insert_one({
