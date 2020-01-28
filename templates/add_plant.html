@@ -7,19 +7,24 @@
   <form action="{{url_for('add_plant')}}" method="POST">
     <div class="row">
       <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-
-        {% with errors = get_flashed_messages(category_filter=["plant_exists"]) %} {% if errors %}
+        {% with errors = get_flashed_messages(category_filter=["plant_exists"]) %}
+        <!-- If the user attempts to add a plant which already exists in the
+        database, get the flashed error message 'plant_exists' from app.py -->
+        {%- if errors -%}
         <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
           <button type="button" class="close" data-dismiss="alert">×</button>
           <ul>
             {%- for msg in errors %}
+            <!-- Display the retrieved error message to alert the user that the
+            plant which they are trying to submit already exists in the DB  -->
             <p>{{ msg }}</p>
             {% endfor -%}
           </ul>
         </div>
         {% endif %} {% endwith %}
         <label for="latin_name">Latin Name (Species):</label>
-        <input id="latin_name" name="latin_name" type="text" class="form-control add-plant-input" required>
+        <input id="latin_name" name="latin_name" type="text"
+        class="form-control add-plant-input" required>
       </div>
     </div>
 
@@ -100,7 +105,7 @@
     </div>
     <div class="row">
       <div class="col text-center">
-      <button class="btn btn-success" type="submit">Add Plant</button>
+        <button class="btn btn-success" type="submit">Add Plant</button>
       </div>
     </div>
   </form>
