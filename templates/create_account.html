@@ -6,8 +6,8 @@
 
   <div class="row">
     <div class="col text-center">
-    <h6>Already have an account? <a href="{{url_for('login')}}">Login</a></h6>
-  </div>
+      <h6>Already have an account? <a href="{{url_for('login')}}">Login</a></h6>
+    </div>
   </div>
 
   <form action="{{url_for('create_account')}}" method="POST" class="add-user-form" onSubmit="return checkPassword(this)">
@@ -34,16 +34,19 @@
 
     <div class="row">
       {# Retrieves error message from create_account function in app.py if the user tries to create an account with a username that is already in the database #}
-      {% with errors = get_flashed_messages(category_filter=["username_exists"]) %} {% if errors %}
-        <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <ul>
-            {% for msg in errors %}
-            <p>{{ msg }}</p>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %} {% endwith %}
+      {% with errors = get_flashed_messages(category_filter=["username_exists"]) %}
+      {% if errors %}
+      <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <ul>
+          {% for msg in errors %}
+          {# Display error message inside paragraph tag #}
+          <p>{{ msg }}</p>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %} 
+      {% endwith %}
     </div>
 
     <div class="row">
@@ -52,7 +55,7 @@
         <input id="username" name="username" type="text" class="form-control" required>
       </div>
     </div>
-
+    
     <div class="row">
       <div class="form-group add-user-details">
         <label for="hashed_pwd">Password:</label>
