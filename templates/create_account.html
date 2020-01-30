@@ -12,29 +12,29 @@
 
   <form action="{{url_for('create_account')}}" method="POST" onSubmit="return checkPassword(this)">
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+      <div class="form-group">
         <label for="first_name">First Name:</label>
         <input id="first_name" name="first_name" type="text" class="form-control" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+      <div class="form-group">
         <label for="last_name">Last Name:</label>
         <input id="last_name" name="last_name" type="text" class="form-control" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+      <div class="form-group">
         <label for="email">Email:</label>
         <input id="email" name="email" type="email" class="form-control" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-        {% with errors = get_flashed_messages(category_filter=["username_exists"]) %} {% if errors %}
+      {# Retrieves error message from create_account function in app.py if the user tries to create an account with a username that is already in the database #}
+      {% with errors = get_flashed_messages(category_filter=["username_exists"]) %} {% if errors %}
         <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
           <button type="button" class="close" data-dismiss="alert">×</button>
           <ul>
@@ -44,20 +44,24 @@
           </ul>
         </div>
         {% endif %} {% endwith %}
+    </div>
+
+    <div class="row">
+      <div class="form-group">
         <label for="username">Username:</label>
         <input id="username" name="username" type="text" class="form-control" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+      <div class="form-group">
         <label for="hashed_pwd">Password:</label>
         <input id="hashed_pwd" name="password1" type="password" class="form-control" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+      <div class="form-group">
         <label for="reenter_password">Re-enter password to confirm:</label>
         <input name="password2" type="password" class="form-control" required>
       </div>
