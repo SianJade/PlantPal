@@ -3,6 +3,7 @@
 <div class="container-fluid bg-img">
   <br>
   <h1>Add a Plant</h1>
+  <div class="form-container">
     <form action="{{url_for('add_plant')}}" class="add-plant-form" method="POST">
       <div class="row">
         {% with errors = get_flashed_messages(category_filter=["plant_exists"]) %} {% if errors %}
@@ -98,6 +99,7 @@
         </div>
       </div>
     </form>
+    </div>
     <br>
   </div>
   {% endblock %}
