@@ -23,12 +23,14 @@
     <br>
     <form action="{{url_for('authentication')}}" method="POST" class="login-form">
         <div class="row">
+            {# Retrieve error message from login function to inform user their entered username or password is incorrect #}
             {% with errors = get_flashed_messages(category_filter=["wrong"]) %}
             {% if errors %}
             <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul>
                     {% for msg in errors %}
+                    {# Display error message inside paragraph tag #}
                     <p>{{ msg }}</p>
                     {% endfor %}
                 </ul>
@@ -38,12 +40,14 @@
         </div>
         
         <div class="row">
+            {# Retrieve error message from login function to inform user their entered username does not exist in the database #}
             {% with errors = get_flashed_messages(category_filter=["user_does_not_exist"]) %}
             {% if errors %}
             <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul>
                     {% for msg in errors %}
+                    {# Display error message inside paragraph tag #}
                     <p>{{ msg }}</p>
                     {% endfor %}
                 </ul>
