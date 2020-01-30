@@ -6,15 +6,15 @@
 
   <form action="{{url_for('update_plant', plant_id=plant._id)}}" class="edit-plant-form" method="POST">
     <div class="row">
-      <div class="form-group">
-        <label for="latin_name edit-plant">Latin Name (Species):</label>
+      <div class="form-group edit-plant">
+        <label for="latin_name">Latin Name (Species):</label>
         <input id="latin_name" name="latin_name" type="text" class="form-control" value="{{plant.latin_name}}" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <label for="common_name edit-plant">Common Name:</label>
+      <div class="form-group edit-plant">
+        <label for="common_name">Common Name:</label>
         <input id="common_name" name="common_name" type="text" class="form-control" value="{{plant.common_name}}" required>
       </div>
     </div>
