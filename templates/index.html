@@ -2,27 +2,35 @@
 
 <div class="jumbotron jumbotron-fluid">
     
-    {% with errors = get_flashed_messages(category_filter=["logout_success"]) %} {% if errors %}
+    {% with alerts = get_flashed_messages(category_filter=["logout_success"]) %}
+    {# If the user has successfully logged out, flash a message to notify them of this #}
+    {% if alerts %}
     <div class="alert alert-success col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
-            {%- for msg in errors %}
+            {% for msg in alerts %}
+            {# Display the alert message text inside a paragraph tag #}
             <p>{{ msg }}</p>
-            {% endfor -%}
+            {% endfor %}
         </ul>
     </div>
-    {% endif %} {% endwith %}
+    {% endif %}
+    {% endwith %}
     
-    {% with errors = get_flashed_messages(category_filter=["account_deleted"]) %} {% if errors %}
+    {% with alerts = get_flashed_messages(category_filter=["account_deleted"]) %}
+    {% If the user has successfully deleted their account, flash a message to notify them of this #}
+    {% if alerts %}
     <div class="alert alert-success col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
-            {%- for msg in errors %}
+            {% for msg in alerts %}
+            {# Display the alert message text inside a paragraph tag #}
             <p>{{ msg }}</p>
-            {% endfor -%}
+            {% endfor %}
         </ul>
     </div>
-    {% endif %} {% endwith %}
+    {% endif %}
+    {% endwith %}
     
     <div class="headings-and-search">
         <p class="landing-header offset-xl-6">
