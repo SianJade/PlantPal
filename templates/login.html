@@ -4,47 +4,58 @@
     <h1>Login</h1>
     <br>
     <div class="row">
-        <p class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2 no-account">
+        <p class="col text-center no-account">
             Don't have an account? <a href="{{url_for('create_account')}}">Create one here</a>
         </p>
     </div>
 
-    <br> {% with errors = get_flashed_messages(category_filter=["login"]) %} {% if errors %}
+    <br>
+    {% with errors = get_flashed_messages(category_filter=["login"]) %}
+    {% if errors %}
     <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
-            {%- for msg in errors %}
+            {% for msg in errors %}
             <p>{{ msg }}</p>
-            {% endfor -%}
+            {% endfor %}
         </ul>
     </div>
-    {% endif %} {% endwith %}
+    {% endif %}
+    {% endwith %}
     <br>
     <form action="{{url_for('authentication')}}" method="POST" class="login-form">
         <div class="row">
-            {# Retrieve error message from login function to inform user their entered username or password is incorrect #} {% with errors = get_flashed_messages(category_filter=["wrong"]) %} {% if errors %}
+            {# Retrieve error message from login function to inform user their entered username or password is incorrect #}
+            {% with errors = get_flashed_messages(category_filter=["wrong"]) %}
+            {% if errors %}
             <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul>
-                    {% for msg in errors %} {# Display error message inside paragraph tag #}
+                    {% for msg in errors %}
+                    {# Display error message inside paragraph tag #}
                     <p>{{ msg }}</p>
                     {% endfor %}
                 </ul>
             </div>
-            {% endif %} {% endwith %}
+            {% endif %}
+            {% endwith %}
         </div>
 
         <div class="row">
-            {# Retrieve error message from login function to inform user their entered username does not exist in the database #} {% with errors = get_flashed_messages(category_filter=["user_does_not_exist"]) %} {% if errors %}
+            {# Retrieve error message from login function to inform user their entered username does not exist in the database #}
+            {% with errors = get_flashed_messages(category_filter=["user_does_not_exist"]) %}
+            {% if errors %}
             <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul>
-                    {% for msg in errors %} {# Display error message inside paragraph tag #}
+                    {% for msg in errors %}
+                    {# Display error message inside paragraph tag #}
                     <p>{{ msg }}</p>
                     {% endfor %}
                 </ul>
             </div>
-            {% endif %} {% endwith %}
+            {% endif %}
+            {% endwith %}
         </div>
         
         <div class="row">
