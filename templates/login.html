@@ -10,12 +10,14 @@
     </div>
 
     <br>
+    {# Retrieve message from telling the user they must login to complete their desired action #}
     {% with errors = get_flashed_messages(category_filter=["login"]) %}
     {% if errors %}
     <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
             {% for msg in errors %}
+            {# Display the login flashed message inside paragraph tags #}
             <p>{{ msg }}</p>
             {% endfor %}
         </ul>
