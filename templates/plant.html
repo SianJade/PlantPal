@@ -2,61 +2,76 @@
 <div class="container-fluid bg-img">
     <br>
     <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
-    <br> 
-    {% with errors = get_flashed_messages(category_filter=["delete"]) %} {% if errors %}
+    <br>
+    {% with errors = get_flashed_messages(category_filter=["delete"]) %}
+    {% if errors %}
     <div class="alert alert-danger col text-center alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
-            {%- for msg in errors %}
+            {% for msg in errors %}
             <p>{{ msg }}</p>
-            {% endfor -%}
+            {% endfor %}
         </ul>
     </div>
-    {% endif %} {% endwith %}
-    <img class="col-xl-4 offset-xl-4 col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-xs-6 offset-xs-3"
-    src="{{ plant.plant_image }}" alt="plant-image" />
+    {% endif %}
+    {% endwith %}
+
+    <div class="row">
+        <img class="plant-image" src="{{ plant.plant_image }}" alt="plant-image" />
+        <table class="table plant-info">
+            <tbody>
+                <tr>
+                    <td>Order:</td>
+                    <td>{{plant.order}}</td>
+                </tr>
+                <tr>
+                    <td>Family:</td>
+                    <td>{{plant.family}}</td>
+                </tr>
+                <tr>
+                    <td>Genus:</td>
+                    <td>{{plant.genus}}</td>
+                </tr>
+                <tr>
+                    <td>Preferred Lighting:</td>
+                    <td>{{plant.preferred_lighting}}</td>
+                </tr>
+                <tr>
+                    <td>Indoor/Outdoor:</td>
+                    <td>{{plant.indoor_outdoor}}</td>
+                </tr>
+                <tr>
+                    <td>Watering Frequency</td>
+                    <td>{{plant.water_frequency}}</td>
+                </tr>
+                <tr>
+                    <td>Preferred Soil Type:</td>
+                    <td>{{plant.soil_type}}</td>
+                </tr>
+                <tr>
+                    <td>Additional Notes:</td>
+                    <td>{{plant.additional_notes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <br>
-    <ul class="list-group">
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Order: {{plant.order}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Family: {{plant.family}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Genus: {{plant.genus}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Preferred lighting conditions: {{plant.preferred_lighting}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Indoor or Outdoor: {{plant.indoor_outdoor}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Watering frequency: {{plant.water_frequency}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Preferred soil type: {{plant.soil_type}}
-        </li>
-        <li class="list-group-item col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Additional notes: {{plant.additional_notes}}
-        </li>
-    </ul>
-    <br> {% if 'user_id' in session %}
+    {% if 'user_id' in session %}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
         </div>
     </div>
     {% endif %}
-    <br> 
-    {% if 'user_id' in session %} {% if user_id == session['user_id'] %}
+    <br>
+    {% if 'user_id' in session %}
+    {% if user_id == session['user_id'] %}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
         </div>
     </div>
-    {% endif %} {% endif %}
+    {% endif %}
+    {% endif %}
 </div>
 {% endblock %}
