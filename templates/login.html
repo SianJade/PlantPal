@@ -8,23 +8,24 @@
             Don't have an account? <a href="{{url_for('create_account')}}">Create one here</a>
         </p>
     </div>
-
     <br>
-    {# Retrieve message from telling the user they must login to complete their desired action #}
-    {% with errors = get_flashed_messages(category_filter=["login"]) %}
-    {% if errors %}
-    <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <ul>
-            {% for msg in errors %}
-            {# Display the login flashed message inside paragraph tags #}
-            <p>{{ msg }}</p>
-            {% endfor %}
-        </ul>
+    <div class="row">
+        {# Retrieve message from telling the user they must login to complete their desired action #}
+        {% with errors = get_flashed_messages(category_filter=["login"]) %}
+        {% if errors %}
+        <div class="alert alert-danger col-xl-4 alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <ul>
+                {% for msg in errors %}
+                {# Display the login flashed message inside paragraph tags #}
+                <p>{{ msg }}</p>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
     </div>
-    {% endif %}
-    {% endwith %}
-    <br>
+
     <form action="{{url_for('authentication')}}" method="POST" class="login-form">
         <div class="row">
             {# Retrieve error message from login function to inform user their entered username or password is incorrect #}
