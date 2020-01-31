@@ -3,20 +3,26 @@
     <br>
     <h1>My Account</h1>
     <br>
-    <ul class="list-group">
-        <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            First Name: {{user.first_name}}
-        </li>
-        <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Last Name: {{user.last_name}}
-        </li>
-        <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Email: {{user.email}}
-        </li>
-        <li class="list-group-item col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-            Username: {{user.username}}
-        </li>
-    </ul>
+    <table class="table user-info">
+        <tbody>
+            <tr>
+                <td>First Name:</td>
+                <td>{{user.first_name}}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{user.last_name}}</td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>{{user.username}}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
     <br>
     <div class="row">
         <div class="col text-center">
