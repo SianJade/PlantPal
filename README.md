@@ -10,6 +10,10 @@ Alongside the more scientific plant information is information on what best care
 
 The user is able to search for specific plants by searching for a common name (such as Snake Plant) or Latin name (such as Sansevieria Trifasciata), as well as being able to browse a broader selection of related plants by searching for a particular genus (such as Tradescantia or Sansevieria) or family (such as Asparagaceae). The ability for users to browse plants by whether they are indoor or outdoor plants, as well as their preferred lighting conditions allow for users to perhaps select new plants which they would like to acquire for a certain spot in their house or garden.
 
+Users are also able to add entries for plants which are not already in the database - including an image of the plant, for visual context, or they can edit the details of plants which are already in the database. To complete these actions the user must be logged in, so as to ensure that upon creation of a new plant entry, a field containing the creator's username is included in the database entry for the plant, which allows for checks to be put in place to ensure that only the creator of a plant's page is able to delete it - this is to ensure there is no other users can randomly or maliciously delete another user's research and hard work from the site. Other users are, however, able to amend plant information should they wish to - this is a feature which may require the implentation of some form of moderation in the future to prevent abuse or misuse of this system.
+
+All forms used for adding/editing plants, creating accounts, and logging in feature top aligned labels for each input field rather than left or right aligned labels - whilst this does make each form longer in terms of the view on the page, using top aligned labels does improve the overall readability of the form for the user, this is because placing the label above the input element rather than to the side allows the user to view both elements together with a single eye movement. I also opted not to make the form labels bold, as a [UX study by Matteo Penzo](https://www.uxmatters.com/mt/archives/2006/07/label-placement-in-forms.php) which tracked the eye movements and timings for users filling out various forms, found that bold labels above an input resulted in an increased time for filling out the form, meaning that to use bold labels in this context would make the form less readable for users.
+
 Wireframes for the application can be found in the assets folder of the repository.
 
 A live desktop demo can be found [here](https://plant--pal.herokuapp.com/). The source code for this project can be found [here](https://github.com/SianJade/PlantPal).
@@ -58,6 +62,8 @@ As a house plant enthusiast, I would like to be able to search for various plant
 ### Features Left to Implement
 
 - In future versions of the app, I would like to add functionality for users to upload a photograph of a plant which they may not know the name of, so that the app can search through the existing plants in the database and then redirect them to that particular plant's page within the app should a page with information about that particular plant exist.
+
+- In future releases, I would also like to implement functionality which redirects the user back the the previous page after they have logged in - i.e. if the user was attempting to add or edit a plant and was prompted to login in order to do so, then once they had completed this action, instead of being redirected to their profile page, they would be redirected back to the page they were previouslt on to complete their desired action, therefore improving the overall UX of the site. So far the only ways I have been able to find to implement this have been by using Django, which I currently do not have enough knowledge of to be able to implement within this project.
 
 - I would also like to implement functionality for the user to upload a photograph of a particular location where they would like to keep a plant, then based on the lighting conditions shown in the photograph, recommend which types of plants may be well suited to the particular location.
 
@@ -117,7 +123,7 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 - The application has been tested across different web browsers and screens of all sizes, including iPhone (and Safari), Moto G5 (on Google Chrome and Opera), Samsung Galaxy tablet (and its inbuilt internet app,as well as Google Chrome), Amazon Kindle (using the Amazon Silk web browser), as well as on larger devices and on broswers such as Microsoft Edge, Firefox, and Internet Explorer. The site works well across all devices and all functionality works as intended. The only issue of note is that on the View all plants page, the button is not beside the plant name, but below ad off to right slightly.
 
-- Index.html page has a small white strip at the bottom across all devices, however this does not appear on any other page.
+- Index.html page has a small white strip across the bottom on all devices, however this does not appear on any other page.
 
 
 ## Deployment
