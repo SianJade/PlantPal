@@ -3,12 +3,14 @@
     <br>
     <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
     <br>
+    {# Retrieve error message from delete_plant function in app.py #}
     {% with errors = get_flashed_messages(category_filter=["delete"]) %}
     {% if errors %}
     <div class="alert alert-danger col text-center alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
             {% for msg in errors %}
+            {# Display message explaining that only the plant's initial creator can delete it from the database #}
             <p>{{ msg }}</p>
             {% endfor %}
         </ul>
@@ -57,6 +59,7 @@
     </div>
     <br>
     {% if 'user_id' in session %}
+    {# if the user is in session, display the 'edit plant' button #}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
@@ -65,6 +68,7 @@
     {% endif %}
     <br>
     {% if 'user_id' in session %}
+    {# If the user is in session and their user id matches the user id of the plant's creator, also display the 'delete plant' button #}
     {% if user_id == session['user_id'] %}
     <div class="row">
         <div class="col text-center">
