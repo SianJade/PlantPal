@@ -1,7 +1,7 @@
 # Plant Pal - Plant Database and Encyclopedia
 
 Stream Three Project: Data-Centric Development - Code Institute
- 
+
 ## UX
 
 The purpose of this project is to serve as an online catalogue of information about various indoor and outdoor plant species from around the world. This includes their scientific classifications such as their Latin names, family, and genus for those who may be interested in plant geneaolgy or who may wish to use this information to find out more about the biology and/or origins of a specific plant, or of a larger genus/family to which that plant belongs.
@@ -12,7 +12,7 @@ The user is able to search for specific plants by searching for a common name (s
 
 Users are also able to add entries for plants which are not already in the database - including an image of the plant, for visual context, or they can edit the details of plants which are already in the database. To complete these actions the user must be logged in, so as to ensure that upon creation of a new plant entry, a field containing the creator's username is included in the database entry for the plant, which allows for checks to be put in place to ensure that only the creator of a plant's page is able to delete it - this is to ensure there is no other users can randomly or maliciously delete another user's research and hard work from the site. Other users are, however, able to amend plant information should they wish to - this is a feature which may require the implentation of some form of moderation in the future to prevent abuse or misuse of this system.
 
-All forms used for adding/editing plants, creating accounts, and logging in feature top aligned labels for each input field rather than left or right aligned labels - whilst this does make each form longer in terms of the view on the page, using top aligned labels does improve the overall readability of the form for the user, this is because placing the label above the input element rather than to the side allows the user to view both elements together with a single eye movement. I also opted not to make the form labels bold, as a [UX study by Matteo Penzo](https://www.uxmatters.com/mt/archives/2006/07/label-placement-in-forms.php) which tracked the eye movements and timings for users filling out various forms, found that bold labels above an input resulted in an increased time for filling out the form, meaning that to use bold labels in this context would make the form less readable for users.
+All forms used for adding/editing plants, creating accounts, and logging in feature top aligned labels for each input field rather than left or right aligned labels - whilst this does make each form longer in terms of the view on the page, using top aligned labels does improve the overall readability of the form for the user, this is because placing the label above the input element rather than to the side allows the user to view both elements together with a single eye movement. I also opted not to make the form labels bold, as a [UX study by Matteo Penzo](https://www.uxmatters.com/mt/archives/2006/07/label-placement-in-forms.php) which tracked the eye movements and timings for users filling out various forms, found that bold labels above an input resulted in an increased time for filling out the form, meaning that to use bold labels in this context would make the form less readable for users. To further enhance readability, all plant information and user information is displayed in a table format to allow for a more uniform layout of each data field and its contents - keeping the field names aligned one below the other, and likewise with the field content.
 
 Wireframes for the application can be found in the assets folder of the repository.
 
@@ -38,9 +38,9 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 ### Existing Features
 
-- The site allows users to search for plants via latin name, common name, order, family, genus, preferred lighting conditions, preferred soil type, watering frequency, and whether the plant is a house plant or an outdoor plant using the search bar and then returns a list of seacrch results which match their search bar input; from here the users can access the page of any plant listed in the search results.
+- The site allows users to search for plants via latin name, common name, order, family, genus, preferred lighting conditions, preferred soil type, watering frequency, and whether the plant is a house plant or an outdoor plant using the search bar and then returns a list of seacrch results which match their search bar input; from here the users can access the page of any plant listed in the search results. The site also allows users to browse plants by a broader genus name and then allows the user to view all plant species within the selected genus.
 
-- The site also allows users to browse plants by genus name and then allows the user to view all plant species within the selected genus.
+- In order for users to be able to what a plant looks like before they click the `view plant` button, each indvidual plant is displayed via the use of Bootstrap cards - this allows for a thumbnail image of the plant to be shown along with its latin and common names. This visual aid allows users who may be looking through plants based on their appearance to view a plant image without having to view all of its details, then if this plant interests them/is what tey are looking for, they can click `view plant` for further information.
 
 - Users are able to submit details of new plants to the database via the 'Add a Plant' page, including details such as the plant's Latin name, common name, genus, preferred ligthting conditions and watering frequency, as well as an image of the plant in order to provide the visual context of the plant's appearance for other users.
 
