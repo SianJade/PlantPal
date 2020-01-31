@@ -9,8 +9,7 @@
         </p>
     </div>
 
-    <br>
-    {% with errors = get_flashed_messages(category_filter=["login"]) %} {% if errors %}
+    <br> {% with errors = get_flashed_messages(category_filter=["login"]) %} {% if errors %}
     <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
@@ -23,52 +22,49 @@
     <br>
     <form action="{{url_for('authentication')}}" method="POST" class="login-form">
         <div class="row">
-            {# Retrieve error message from login function to inform user their entered username or password is incorrect #}
-            {% with errors = get_flashed_messages(category_filter=["wrong"]) %}
-            {% if errors %}
+            {# Retrieve error message from login function to inform user their entered username or password is incorrect #} {% with errors = get_flashed_messages(category_filter=["wrong"]) %} {% if errors %}
             <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul>
-                    {% for msg in errors %}
-                    {# Display error message inside paragraph tag #}
+                    {% for msg in errors %} {# Display error message inside paragraph tag #}
                     <p>{{ msg }}</p>
                     {% endfor %}
                 </ul>
             </div>
-            {% endif %} 
-            {% endwith %}
+            {% endif %} {% endwith %}
+        </div>
+
+        <div class="row">
+            {# Retrieve error message from login function to inform user their entered username does not exist in the database #} {% with errors = get_flashed_messages(category_filter=["user_does_not_exist"]) %} {% if errors %}
+            <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <ul>
+                    {% for msg in errors %} {# Display error message inside paragraph tag #}
+                    <p>{{ msg }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %} {% endwith %}
         </div>
         
         <div class="row">
-            {# Retrieve error message from login function to inform user their entered username does not exist in the database #}
-            {% with errors = get_flashed_messages(category_filter=["user_does_not_exist"]) %}
-            {% if errors %}
-            <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <ul>
-                    {% for msg in errors %}
-                    {# Display error message inside paragraph tag #}
-                    <p>{{ msg }}</p>
-                    {% endfor %}
-                </ul>
+            <div class="form-group login-input">
+                <label for="username">Username:</label>
+                <input id="username" name="username" type="text" class="form-control">
             </div>
-            {% endif %}
-            {% endwith %}
+        </div>
+        
+        <div class="row">
+            <div class="form-group login-input">
+                <label for="password">Password:</label>
+                <input id="password" name="password" type="password" class="form-control">
             </div>
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input id="username" name="username" type="text" class="form-control">
         </div>
 
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input id="password" name="password" type="password" class="form-control">
+        <div class="row">
+            <p class="col text-center">Please note: Username and password are case sensitive</p>
         </div>
-        <div class="row note">
-            <div class="col text-center">
-                <p>Please note: Username and password are case sensitive</p>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col text-center">
                 <button class="btn btn-success" type="submit">Login</button>
