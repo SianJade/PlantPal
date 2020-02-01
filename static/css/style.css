@@ -193,10 +193,14 @@ p {
         background-image: url('/static/assets/background-sm.jpg');
         background-repeat: repeat-y;
     }
+    
+    .headings-and-search {
+        width: 90%;
+        margin: 0 auto;
+    }
 
     .home-search {
-        width: 75%;
-        margin: 0 auto;
+        width: 90%;
     }
 
     .form-control {
