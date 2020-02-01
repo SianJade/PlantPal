@@ -76,6 +76,9 @@ h2 {
     margin: 0;
 }
 
+.search-button {
+    margin: 0 25%;
+}
 
 .bg-img {
     background-image: url('/static/assets/background-lg.jpg');
@@ -127,7 +130,7 @@ label {
 }
 
 .card.plant-card {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     text-align: center;
 }
@@ -143,8 +146,6 @@ label {
     height: 30rem;
     width: 30rem;
     border-radius: 5px;
-    margin-left: 10rem;
-    box-shadow: 3px 3px 3px #013220;
 }
 
 .instruction-container,
@@ -207,20 +208,32 @@ p {
     .add-user-details {
         width: 100%;
     }
-    
+
     .login-input {
         margin: 0 auto;
     }
-    
+
     .image-instructions {
         font-size: 12px;
         width: 85%;
         font-weight: bold;
     }
-    
+
     button {
         padding: 0 10px;
         display: inline-block;
+    }
+    
+    .plant-info,
+    .user-info,
+    .genera-table {
+        max-width: 95%;
+    }
+    
+    .plant-image {
+        height: 22rem;
+        width: 22rem;
+        padding: 1rem 1.5rem;
     }
 }
 
@@ -242,25 +255,31 @@ p {
         background-size: 100vw 100vh;
     }
 
-    .home-search {
-        width: 50%;
-        margin: 0 auto;
-    }
-
     p {
         font-size: 1rem;
         font-weight: bold;
-        text-shadow: 1px 1px #fff;
     }
 
     .bg-img {
         background-image: url('/static/assets/background-med.jpg');
         background-repeat: repeat-y;
     }
-    
+
     .image-instructions {
         font-size: 14px;
         width: 85%;
         font-weight: bold;
+    }
+
+    .plant-image {
+        width: 25rem;
+        height: 25rem;
+        padding: 1rem 1rem;
+    }
+
+    .plant-info,
+    .user-info,
+    .genera-table {
+        max-width: 60%;
     }
 }
