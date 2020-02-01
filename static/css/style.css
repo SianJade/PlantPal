@@ -60,10 +60,13 @@ h2 {
     margin-right: 10rem;
 }
 
-.home-search,
-.nav-search {
+.home-search {
     text-transform: lowercase;
     width: 25rem;
+}
+
+.nav-search{
+    width: 20rem;
 }
 
 .nav-button {
@@ -180,7 +183,8 @@ p {
 
 @media screen and (max-width: 700px) {
 
-    .navbar-nav>li>a {
+    .navbar-nav>li>a,
+    .nav-search {
         text-align: center;
         text-shadow: 1px 1px black;
         background-color: rgba(0, 102, 0, 0.5);
