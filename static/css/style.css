@@ -60,9 +60,14 @@ h2 {
     margin-right: 10rem;
 }
 
-.home-search {
+.home-search,
+.nav-search {
     text-transform: lowercase;
     width: 25rem;
+}
+
+.nav-button {
+    margin-left: 0.3rem;
 }
 
 .jumbotron {
