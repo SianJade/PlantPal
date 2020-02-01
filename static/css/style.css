@@ -258,10 +258,9 @@ p {
         background-repeat: repeat-y;
     }
     
-    .image-instructions,
-    .login-note {
-        width: 75%;
-        display: block;
+    .image-instructions {
+        font-size: 14px;
+        width: 85%;
+        font-weight: bold;
     }
-
 }
