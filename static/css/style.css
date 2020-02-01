@@ -188,13 +188,6 @@ p {
         background-size: 100vw 100vh;
     }
 
-
-    p {
-        font-size: 0.5rem;
-        font-weight: bold;
-        text-shadow: 1px 1px #fff;
-    }
-
     .bg-img {
         background-image: url('/static/assets/background-sm.jpg');
         background-repeat: repeat-y;
@@ -217,6 +210,12 @@ p {
     
     .login-input {
         margin: 0 auto;
+    }
+    
+    .image-instructions {
+        font-size: 12px;
+        width: 85%;
+        font-weight: bold;
     }
     
     button {
