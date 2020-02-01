@@ -183,8 +183,7 @@ p {
 
 @media screen and (max-width: 700px) {
 
-    .navbar-nav>li>a,
-    .nav-search {
+    .navbar-nav>li>a {
         text-align: center;
         text-shadow: 1px 1px black;
         background-color: rgba(0, 102, 0, 0.5);
@@ -192,7 +191,12 @@ p {
         float: right;
         z-index: 1;
     }
-
+    
+    .nav-search {
+        width: 10rem !important;
+        float: right;
+    }
+    
     .jumbotron {
         background-image: url('/static/assets/mobile-landing.jpg');
         background-size: 100vw 100vh;
@@ -261,6 +265,11 @@ p {
         width: 25%;
         float: right;
         z-index: 1;
+    }
+    
+    .nav-search {
+        float: right;
+        width: 17.5rem;
     }
 
     .jumbotron {
