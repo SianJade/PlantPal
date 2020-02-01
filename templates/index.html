@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="jumbotron jumbotron-fluid">
-    
+
     {% with alerts = get_flashed_messages(category_filter=["logout_success"]) %}
     {# If the user has successfully logged out, flash a message to notify them of this #}
     {% if alerts %}
@@ -31,20 +31,30 @@
     </div>
     {% endif %}
     {% endwith %}
-    
+
     <div class="headings-and-search">
-        <p class="landing-header offset-xl-6">
-            Plant Pal
-        </p>
-        <h2 class="landing-subhead offset-xl-6">
-            Your one-stop plant encyclopedia
-        </h2>
+        <div class="row">
+            <h1 class="landing-header">
+                Plant Pal
+            </h1>
+        </div>
+        <div class="row">
+            <h2 class="landing-subhead">
+                Your one-stop plant encyclopedia
+            </h2>
+        </div>
         <br>
-        <form action="{{ url_for('get_search') }}" method="post" class="home-search">
-            <input class="form-control col-xl-4 offset-xl-7" id="q" name="search_text" type="search" placeholder="Search all plants">
-            <br>
-            <button type="submit" class="btn btn-success offset-xl-6">Search</button>
-        </form>
+        <div class="row">
+            <form action="{{ url_for('get_search') }}" method="post" class="home-search">
+                <input class="form-control" id="q" name="search_text" type="search" placeholder="Search all plants">
+            </form>
+        </div>
+        <br>
+        <div class="row">
+            <div class="mx-auto">
+                <button type="submit" class="btn btn-success">Search</button>
+            </div>
+        </div>
     </div>
 </div>
 
