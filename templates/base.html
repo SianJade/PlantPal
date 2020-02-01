@@ -18,8 +18,8 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbar1">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('genera')}}">Browse by Genus</a>
                 </li>
@@ -48,6 +48,10 @@
                 </li>
                 {% endif %}
             </ul>
+            <form class="form-inline nav-search" action="{{ url_for('get_search') }}" method="post">
+              <input class="form-control" type="search" id="q" name="search_text" placeholder="Search all Plants">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </nav>
     {% block content %}
