@@ -56,6 +56,13 @@ h2 {
 
 .headings-and-search {
     text-align: center;
+    float: right;
+    margin-right: 10rem;
+}
+
+.home-search {
+    text-transform: lowercase;
+    width: 25rem;
 }
 
 .jumbotron {
@@ -82,36 +89,18 @@ h2 {
     margin: 0;
 }
 
-.add-plant-form,
-.edit-plant-form,
-.add-user-form,
-.login-form {
-    width: 75%;
-    margin: auto;
-}
-
 .form-control {
     max-width: 75%;
     min-width: 75%;
 }
 
-
-.plant-info {
-    max-width: 40%;
+.add-plant-form,
+.edit-plant-form,
+.add-user-form,
+.login-form,
+.genera-list {
+    width: 75%;
     margin: auto;
-}
-
-.plant-detail {
-    display: inline-block;
-    width: 50%;
-    float: right;
-    margin-left: auto;
-}
-
-.plant-image {
-    height: 30rem;
-    width: 30rem;
-    border-radius: 5px;
 }
 
 .add-plant,
@@ -119,12 +108,44 @@ h2 {
 .add-user-details,
 .login-input,
 .note {
-    display: inline-block;
     width: 75%;
-    float: right;
-    margin-left: auto;
 }
 
+label {
+    text-shadow: 1px 2px #fff;
+}
+
+.plant-info,
+.user-info,
+.genera-table {
+    max-width: 40%;
+    margin: auto;
+}
+
+.card {
+    margin: 1rem;
+}
+
+.card.plant-card {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    text-align: center;
+}
+
+.card-img-top {
+    height: 20rem;
+    width: 15rem;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #013220;
+}
+
+.plant-image {
+    height: 30rem;
+    width: 30rem;
+    border-radius: 5px;
+    margin-left: 10rem;
+    box-shadow: 3px 3px 3px #013220;
+}
 
 .instruction-container,
 .login-note-container {
@@ -137,15 +158,7 @@ h2 {
     width: 60%;
 }
 
-.home-search {
-    text-transform: lowercase;
-}
-
 h1 {
-    text-shadow: 1px 2px #fff;
-}
-
-label {
     text-shadow: 1px 2px #fff;
 }
 
@@ -154,17 +167,6 @@ h6,
 p {
     text-align: center;
 }
-
-.plant-card {
-    margin: 1rem;
-}
-
-.card-img-top {
-    height: 20rem;
-    width: 15rem;
-    border-radius: 5px;
-}
-
 
 /* ------------ MEDIA QUERIES ----------- */
 
@@ -212,7 +214,11 @@ p {
     .add-user-details {
         width: 100%;
     }
-
+    
+    .login-input {
+        margin: 0 auto;
+    }
+    
     button {
         padding: 0 10px;
         display: inline-block;
@@ -251,6 +257,12 @@ p {
     .bg-img {
         background-image: url('/static/assets/background-med.jpg');
         background-repeat: repeat-y;
+    }
+    
+    .image-instructions,
+    .login-note {
+        width: 75%;
+        display: block;
     }
 
 }
