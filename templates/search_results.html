@@ -4,7 +4,7 @@
     <h1>Search Results</h1>
     <div class="row">
     {% for result in results %}
-        <div class="card plant-card col-lg-3 col-md-5">
+        <div class="card plant-card col-lg-3 col-md-5 mx-auto">
             <img class="card-img-top" src="{{result.plant_image}}" alt="Plant image">
             <div class="card-body">
                 <h5 class="card-title">{{result.latin_name}} - {{result.common_name}}</h5>
