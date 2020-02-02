@@ -208,7 +208,7 @@ p {
 
     .bg-img {
         background-image: url('/static/assets/background-sm.jpg');
-        background-repeat: repeat-y;
+        background-attachment: fixed;
     }
     
     .headings-and-search {
@@ -288,7 +288,7 @@ p {
 
     .bg-img {
         background-image: url('/static/assets/background-med.jpg');
-        background-repeat: repeat-y;
+        background-attachment: fixed;
     }
 
     .image-instructions {

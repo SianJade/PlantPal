@@ -12,7 +12,7 @@
         {# Retrieve message from telling the user they must login to complete their desired action #}
         {% with errors = get_flashed_messages(category_filter=["login"]) %}
         {% if errors %}
-        <div class="alert alert-danger col-xl-4 alert-dismissible fade show">
+        <div class="alert alert-danger justify-content-center alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <ul>
                 {% for msg in errors %}
