@@ -208,6 +208,7 @@ p {
 
     .bg-img {
         background-color: #fff;
+        background-image: none;
     }
     
     .headings-and-search {
@@ -282,6 +283,7 @@ p {
     
     .bg-img {
         background-color: #fff;
+        background-image: none;
     }
 
     p {
