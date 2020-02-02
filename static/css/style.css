@@ -205,6 +205,10 @@ p {
         background-image: url('/static/assets/mobile-landing.jpg');
         background-size: 100vw 100vh;
     }
+
+    .bg-img {
+        background-color: #fff;
+    }
     
     .headings-and-search {
         width: 90%;
@@ -274,6 +278,10 @@ p {
     .jumbotron {
         background-image: url('/static/assets/tablet-landing.jpg');
         background-size: 100vw 100vh;
+    }
+    
+    .bg-img {
+        background-color: #fff;
     }
 
     p {
