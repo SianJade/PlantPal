@@ -6,7 +6,7 @@
         {# Retrieve error message from delete_plant function in app.py #}
         {% with errors = get_flashed_messages(category_filter=["delete"]) %}
         {% if errors %}
-        <div class="alert alert-danger text-center alert-dismissible fade show">
+        <div class="alert alert-danger alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">×</button>
             {% for msg in errors %}
             {# Display message explaining that only the plant's initial creator can delete it from the database #}
