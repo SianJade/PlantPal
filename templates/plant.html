@@ -64,10 +64,6 @@
             <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
         </div>
     </div>
-    {% endif %}
-    <br>
-    {# If the user is in session and their user id matches the user id of the plant's creator, also display the 'delete plant' button #}
-    {% if 'user_id' == plant.created_by['user_id'] %}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
