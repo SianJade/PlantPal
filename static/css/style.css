@@ -63,7 +63,7 @@ h2 {
     width: 25rem;
 }
 
-.nav-search{
+.nav-search {
     width: 20rem;
 }
 
@@ -96,6 +96,12 @@ h2 {
     background-attachment: fixed;
     padding: 0;
     margin: 0;
+}
+
+.alert {
+    max-width: 20% !important;
+    min-width: 20%;
+    margin: 0 auto;
 }
 
 .form-control {
@@ -195,12 +201,12 @@ p {
         float: right;
         z-index: 1;
     }
-    
+
     .nav-search {
         width: 10rem !important;
         float: right;
     }
-    
+
     .jumbotron {
         background-image: url('/static/assets/mobile-landing.jpg');
         background-size: 100vw 100vh;
@@ -210,7 +216,12 @@ p {
         background-color: #D2E9D6;
         background-image: none;
     }
-    
+
+    .alert {
+        max-width: 80% !important;
+        min-width: 80%;
+    }
+
     .headings-and-search {
         width: 90%;
         margin: 0 auto;
@@ -244,13 +255,13 @@ p {
         padding: 0 10px;
         display: inline-block;
     }
-    
+
     .plant-info,
     .user-info,
     .genera-table {
         max-width: 95%;
     }
-    
+
     .plant-image {
         height: 22rem;
         width: 22rem;
@@ -270,7 +281,7 @@ p {
         float: right;
         z-index: 1;
     }
-    
+
     .nav-search {
         float: right;
         width: 17.5rem;
@@ -280,15 +291,19 @@ p {
         background-image: url('/static/assets/tablet-landing.jpg');
         background-size: 100vw 100vh;
     }
-    
+
     .bg-img {
         background-color: #D2E9D6;
         background-image: none;
     }
 
+    .alert {
+        max-width: 70% !important;
+        min-width: 70%;
+    }
+
     p {
         font-size: 1rem;
-        font-weight: bold;
     }
 
     .image-instructions {
