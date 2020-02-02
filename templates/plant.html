@@ -6,7 +6,7 @@
         {# Retrieve error message from delete_plant function in app.py #}
         {% with errors = get_flashed_messages(category_filter=["delete"]) %}
         {% if errors %}
-        <div class="alert alert-danger col text-center alert-dismissible fade show">
+        <div class="alert alert-danger text-center alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">×</button>
             {% for msg in errors %}
             {# Display message explaining that only the plant's initial creator can delete it from the database #}
@@ -67,7 +67,7 @@
     {% endif %}
     <br>
     {# If the user is in session and their user id matches the user id of the plant's creator, also display the 'delete plant' button #}
-    {% if 'user_id' == [plant.created_by]['user_id'] %}
+    {% if 'user_id' == plant.created_by['user_id'] %}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
