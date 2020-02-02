@@ -9,7 +9,7 @@
       {# Retrived flashed error message from add_plant function in app.py file #}
       {% with errors = get_flashed_messages(category_filter=["plant_exists"]) %}
       {% if errors %}
-      <div class="alert alert-danger ml-auto alert-dismissible fade show">
+      <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
           {% for msg in errors %}
@@ -102,7 +102,9 @@
         <input id="plant_image" type="text" class="form-control" name="plant_image" placeholder="Add plant image link" required>
       </div>
       <div class="instruction-container">
-        <p class="image-instructions">To add a plant photo, please upload your chosen plant photo to <a href="https://postimages.org/" target="_blank">postimages.org</a> and copy and paste the provided 'direct link' (second link down in list on postimages) into the input box above.
+        <p class="image-instructions">To add a plant photo, please upload your chosen plant photo to
+          <a href="https://postimages.org/" target="_blank">postimages.org</a> 
+          and copy and paste the provided 'direct link' (second link down in list on postimages) into the input box above.
         </p>
       </div>
     </div>
