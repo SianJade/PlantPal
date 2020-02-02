@@ -205,11 +205,6 @@ p {
         background-image: url('/static/assets/mobile-landing.jpg');
         background-size: 100vw 100vh;
     }
-
-    .bg-img {
-        background-image: url('/static/assets/background-sm.jpg');
-        background-attachment: fixed;
-    }
     
     .headings-and-search {
         width: 90%;
@@ -284,11 +279,6 @@ p {
     p {
         font-size: 1rem;
         font-weight: bold;
-    }
-
-    .bg-img {
-        background-image: url('/static/assets/background-med.jpg');
-        background-attachment: fixed;
     }
 
     .image-instructions {
