@@ -2,7 +2,6 @@
 <div class="container-fluid bg-img">
     <br>
     <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
-    <br>
     <div class="row">
         {# Retrieve error message from delete_plant function in app.py #}
         {% with errors = get_flashed_messages(category_filter=["delete"]) %}
@@ -17,8 +16,7 @@
         {% endif %}
         {% endwith %}
     </div>
-    
-    <br>
+
     <div class="row">
         <img class="plant-image mx-auto" src="{{ plant.plant_image }}" alt="plant-image" />
         <table class="table plant-info">
@@ -68,15 +66,13 @@
     </div>
     {% endif %}
     <br>
-    {% if 'user_id' in session %}
     {# If the user is in session and their user id matches the user id of the plant's creator, also display the 'delete plant' button #}
-    {% if user_id == session['user_id'] %}
+    {% if 'user_id' == [plant.created_by]['user_id'] %}
     <div class="row">
         <div class="col text-center">
             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
         </div>
     </div>
-    {% endif %}
     {% endif %}
 </div>
 {% endblock %}
