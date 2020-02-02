@@ -9,7 +9,7 @@
       {# Retrived flashed error message from add_plant function in app.py file #}
       {% with errors = get_flashed_messages(category_filter=["plant_exists"]) %}
       {% if errors %}
-      <div class="alert alert-danger col-xl-4 offset-xl-4 alert-dismissible fade show">
+      <div class="alert alert-danger ml-auto alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <ul>
           {% for msg in errors %}
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="form-group add-plant ml-auto">
         <label for="latin_name">Latin Name (Species):</label>
-        <input id="latin_name" name="latin_name" type="text" class="form-control" required>
+        <input id="latin_name" name="latin_name" type="text" class="form-control add-plant-input" required>
       </div>
     </div>
 
