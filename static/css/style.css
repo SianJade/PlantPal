@@ -187,7 +187,7 @@ label {
 
 /* --------- SMALL DEVICES ----------- */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
 
     .navbar-nav>li>a {
         text-align: center;
@@ -254,8 +254,8 @@ label {
     }
 
     .plant-image {
-        height: 22rem !important;
-        width: 22rem !important;
+        height: 22rem;
+        width: 22rem;
         padding: 1rem 1.5rem;
         box-shadow: none;
     }
@@ -268,7 +268,7 @@ label {
 
 /* ------------ MEDIUM DEVICES ----------*/
 
-@media screen and (min-width:701px) and (max-width:1099px) {
+@media screen and (min-width:601px) and (max-width:1099px) {
 
     .navbar-nav>li>a {
         text-align: center;
