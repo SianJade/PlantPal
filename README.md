@@ -69,7 +69,7 @@ As a house plant enthusiast, I would like to be able to search for various plant
 
 - In future releases I would like to implement CAPTCHA on the login page of the app to ensure that the user attempting to login is human.
 
-- In future releases I would like to divise a way to allow users to update their profile details, however in the meantime I have had to remove this functionality.
+- In future releases I would like implement breadcrumbing navingation to the site, however as their are multiple route a user could take to get to the same page on the site, I have not yet figured out an effective way to implement this form of navigation.
 
 
 ## Technologies Used
