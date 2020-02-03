@@ -254,9 +254,10 @@ label {
     }
 
     .plant-image {
-        height: 22rem;
-        width: 22rem;
+        height: 22rem !important;
+        width: 22rem !important;
         padding: 1rem 1.5rem;
+        box-shadow: none;
     }
 
     button {
