@@ -289,6 +289,10 @@ label {
         background-size: 100vw 100vh;
     }
 
+    .headings-and-search {
+        margin: 0 auto;
+    }
+
     .bg-img {
         background-color: #D2E9D6;
         background-image: none;
