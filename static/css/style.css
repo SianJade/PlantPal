@@ -19,7 +19,12 @@ body {
 h1,
 h2 {
     font-family: 'Pacifico', cursive;
-    font-weight: bolder;
+    text-shadow: 1px 2px #fff;
+}
+
+h1,
+p {
+    text-align: center;
 }
 
 .navbar {
@@ -52,17 +57,6 @@ h2 {
     -webkit-transition: all 0.2s ease-in;
 }
 
-.headings-and-search {
-    text-align: center;
-    float: right;
-    margin-right: 10rem;
-}
-
-.home-search {
-    text-transform: lowercase;
-    width: 25rem;
-}
-
 .nav-search {
     width: 20rem;
 }
@@ -80,6 +74,17 @@ h2 {
     background-repeat: no-repeat;
     padding: 0;
     margin: 0;
+}
+
+.headings-and-search {
+    text-align: center;
+    float: right;
+    margin-right: 10rem;
+}
+
+.home-search {
+    text-transform: lowercase;
+    width: 25rem;
 }
 
 .search-button {
@@ -178,16 +183,6 @@ label {
     width: 60%;
 }
 
-h1 {
-    text-shadow: 1px 2px #fff;
-}
-
-h1,
-h6,
-p {
-    text-align: center;
-}
-
 /* ------------ MEDIA QUERIES ----------- */
 
 /* --------- SMALL DEVICES ----------- */
@@ -213,6 +208,15 @@ p {
         background-size: 100vw 100vh;
     }
 
+    .headings-and-search {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .home-search {
+        width: 90%;
+    }
+
     .bg-img {
         background-color: #D2E9D6;
         background-image: none;
@@ -221,15 +225,6 @@ p {
     .alert {
         max-width: 80% !important;
         min-width: 80%;
-    }
-
-    .headings-and-search {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .home-search {
-        width: 90%;
     }
 
     .form-control {
@@ -252,11 +247,6 @@ p {
         font-weight: bold;
     }
 
-    button {
-        padding: 0 10px;
-        display: inline-block;
-    }
-
     .plant-info,
     .user-info,
     .genera-table {
@@ -267,6 +257,11 @@ p {
         height: 22rem;
         width: 22rem;
         padding: 1rem 1.5rem;
+    }
+
+    button {
+        padding: 0 10px;
+        display: inline-block;
     }
 }
 
