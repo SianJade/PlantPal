@@ -2,6 +2,7 @@
 <div class="container-fluid bg-img">
     <br>
     <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
+    <br>
     <div class="row">
         {# Retrieve error message from delete_plant function in app.py #}
         {% with errors = get_flashed_messages(category_filter=["delete"]) %}
