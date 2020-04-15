@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid bg-img">
+    <br>
+    <h1>Genus: {{genus_name}}</h1>
+    <br>
+    <div class="row">
+        {% for plant in plants %}
+        <div class="card plant-card col-lg-3 col-md-5 mx-auto">
+            <img class="card-img-top" src="{{plant.plant_image}}" alt="Plant image">
+            <div class="card-body">
+                <h5 class="card-title">{{plant.latin_name}} - {{plant.common_name}}</h5>
+                <a href="{{url_for('view_plant', plant_id=plant._id)}}" class="btn btn-success">View Plant</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

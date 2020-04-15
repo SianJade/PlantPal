@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid bg-img">
+    <br>
+    <h1>{{plant.latin_name}} - {{plant.common_name}}</h1>
+    <br>
+    <div class="row">
+        {# Retrieve error message from delete_plant function in app.py #}
+        {% with errors = get_flashed_messages(category_filter=["delete"]) %}
+        {% if errors %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {% for msg in errors %}
+            {# Display message explaining that only the plant's initial creator can delete it from the database #}
+            <p>{{ msg }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="row">
+        <img class="plant-image mx-auto" src="{{ plant.plant_image }}" alt="plant-image" />
+        <table class="table plant-info">
+            <tbody>
+                <tr>
+                    <td>Order:</td>
+                    <td>{{plant.order}}</td>
+                </tr>
+                <tr>
+                    <td>Family:</td>
+                    <td>{{plant.family}}</td>
+                </tr>
+                <tr>
+                    <td>Genus:</td>
+                    <td>{{plant.genus}}</td>
+                </tr>
+                <tr>
+                    <td>Indoor/Outdoor:</td>
+                    <td>{{plant.indoor_outdoor}}</td>
+                </tr>
+                <tr>
+                    <td>Preferred Lighting:</td>
+                    <td>{{plant.preferred_lighting}}</td>
+                </tr>
+                <tr>
+                    <td>Watering Frequency:</td>
+                    <td>{{plant.water_frequency}}</td>
+                </tr>
+                <tr>
+                    <td>Preferred Soil Type:</td>
+                    <td>{{plant.soil_type}}</td>
+                </tr>
+                <tr>
+                    <td>Additional Notes:</td>
+                    <td>{{plant.additional_notes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    {% if 'user_id' in session %}
+    {# if the user is in session, display the 'edit plant' button #}
+    <div class="row">
+        <div class="col text-center">
+            <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="btn btn-success">Edit Plant</a><br>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col text-center">
+            <a href="{{ url_for('delete_plant', plant_id=plant._id) }}">Delete plant info</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

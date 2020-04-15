@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid bg-img">
+    <br>
+    <h1>All Genera</h1>
+    <br>
+    <table class="table genera-table">
+        <tbody class="genera-list">
+            {% for genus in genera %}
+            <tr>
+                <td>{{genus}}</td>
+                <td>
+                    <a href="{{url_for('genus', genus_name=genus)}}" class="btn btn-success float-right">View Plants</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

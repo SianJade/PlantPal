@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+
+    {% with alerts = get_flashed_messages(category_filter=["logout_success"]) %}
+    {# If the user has successfully logged out, flash a message to notify them of this #}
+    {% if alerts %}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <ul>
+            {% for msg in alerts %}
+            {# Display the alert message text inside a paragraph tag #}
+            <p>{{ msg }}</p>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    
+    {% with alerts = get_flashed_messages(category_filter=["account_deleted"]) %}
+    {# If the user has successfully deleted their account, flash a message to notify them of this #}
+    {% if alerts %}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <ul>
+            {% for msg in alerts %}
+            {# Display the alert message text inside a paragraph tag #}
+            <p>{{ msg }}</p>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="headings-and-search">
+        <div class="row">
+            <h1 class="landing-header">
+                Plant Pal
+            </h1>
+        </div>
+        <div class="row">
+            <h2 class="landing-subhead">
+                Your one-stop plant encyclopedia
+            </h2>
+        </div>
+        <br>
+        <div class="row">
+            <form action="{{ url_for('get_search') }}" method="post" class="home-search">
+                <input class="form-control" id="q" name="search_text" type="search" placeholder="Search all plants">
+            </form>
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" class="btn btn-success search-button">Search</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

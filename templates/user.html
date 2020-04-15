@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid bg-img">
+    <br>
+    <h1>My Account</h1>
+    <br>
+    <table class="table user-info">
+        <tbody>
+            <tr>
+                <td>First Name:</td>
+                <td>{{user.first_name}}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{user.last_name}}</td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>{{user.username}}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div class="row">
+        <div class="col text-center">
+            <a href="{{ url_for('delete_account', user_id=user._id) }}" class="btn btn-success">Delete Account</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
